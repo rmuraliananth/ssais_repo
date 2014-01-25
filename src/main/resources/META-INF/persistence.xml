@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="paymentgateway-entity" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:/comp/env/jdbc/mmpgi</non-jta-data-source>
+		<mapping-file>META-INF/orm.xml</mapping-file>				
+		<!-- 
+		<class>com.advanceweb.pgi.entities.PaymentMerchantCustomerInfo</class>
+		<class>com.advanceweb.pgi.entities.PaymentTransactionInfo</class>
+		<class>com.advanceweb.pgi.entities.TransactionStatus</class>
+		<class>com.advanceweb.pgi.entities.TransactionType</class> -->
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.25.30:3306/pgi_dev"/>
+			<property name="javax.persistence.jdbc.user" value="merion"/>
+			<property name="javax.persistence.jdbc.password" value="matters"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>

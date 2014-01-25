@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/security 
+			http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/security 
+			http://www.springframework.org/schema/security/spring-security-3.2.xsd">			
+
+	<security:http pattern="/resources/**" security="none" />
+	<security:http pattern="/index.jsp" security="none" />
+
+	<!-- Remember Me Service -->
+	<bean id="rememberMeServices"
+		class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+		<property name="userDetailsService" ref="customAuthenticationManager" />
+		<property name="key" value="ssaisRememberMeKey" />
+	</bean>
+
+	<!-- Logout Handler -->
+	<bean id="customLogoutSuccessHandler" class="com.po.ssais.login.web.controller.LogoutManager" />
+
+	<!-- Authentication Handler (Success or Failure) -->
+	<bean id="customAuthenticationFailureHandler" class="com.po.ssais.login.web.controller.LoginFailureManager" />
+	<bean id="customAuthenticationSuccessHandler" class="com.po.ssais.login.web.controller.LoginManager" />
+
+
+	<!-- Authentication Provider -->
+	<bean id="customAuthenticationManager" class="com.po.ssais.security.SSAAuthenticationManager"
+		p:userDetailsService-ref="customAuthenticationManager" />
+
+	<bean id="rememberMeAuthenticationProvider"
+		class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<property name="key" value="ssaisRememberMeKey" />
+	</bean>
+
+	<security:authentication-manager alias="authenticationManager">
+		<!-- List of authentication provider -->
+		<security:authentication-provider
+			ref="customAuthenticationManager" />
+		<security:authentication-provider
+			ref="rememberMeAuthenticationProvider" />
+	</security:authentication-manager>
+
+	<!-- Filters -->
+	<bean id="ajaxTimeoutRedirectFilter" class="com.po.ssais.security.filter.AjaxTimeoutRedirectFilter">
+		<property name="customSessionExpiredErrorCode" value="901" />
+	</bean>
+
+	<bean id="authenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
+		p:authenticationManager-ref="authenticationManager"
+		p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler"
+		p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
+		p:rememberMeServices-ref="rememberMeServices" />
+
+	<bean id="rememberMeProcessingFilter"
+		class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter"
+		p:rememberMeServices-ref="rememberMeServices"
+		p:authenticationManager-ref="authenticationManager"
+		p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler" />
+
+	<!-- CSRF (Cross Site Request Forgery) protection Filter -->
+	<bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">
+		<constructor-arg>
+			<bean
+				class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository" />
+		</constructor-arg>
+	</bean>
+
+	<!-- Provides automatic CSRF token inclusion when using Spring MVC Form 
+		tags or Thymeleaf. See http://localhost:8080/#forms and form.jsp for examples -->
+	<bean id="requestDataValueProcessor"
+		class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor" />
+
+
+
+	<!-- Authentication Entry Point -->
+	<bean id="authenticationEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
+		p:loginFormUrl="/auth/index" />
+
+	<!-- Security Configuration -->
+	<security:http auto-config="false" use-expressions="true"
+		access-denied-page="/auth/index" entry-point-ref="authenticationEntryPoint">
+		<security:custom-filter ref="ajaxTimeoutRedirectFilter"
+			after="EXCEPTION_TRANSLATION_FILTER" />
+
+		<security:custom-filter ref="authenticationFilter"
+			position="FORM_LOGIN_FILTER" />
+
+		<security:custom-filter ref="rememberMeProcessingFilter"
+			position="REMEMBER_ME_FILTER" />
+
+		<security:logout success-handler-ref="customLogoutSuccessHandler"
+			invalidate-session="true" logout-url="/logout" />
+	</security:http>
+</beans>
+ 
