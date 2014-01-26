@@ -2,6 +2,11 @@ package com.po.ssais.login.web.controller;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author muraliananthr
  * 
@@ -13,6 +18,9 @@ public class LoginForm implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
+	@NotBlank
+	@NotEmpty
 	private String username;
 	private String password;
 	private String name;
