@@ -111,7 +111,7 @@ public class LoginManager extends SimpleUrlAuthenticationSuccessHandler {
 		// }
 		// }
 		// }
-		sendRedirect(request, response, "/customer/add");
+		sendRedirect(request, response, "/dashboard/view");
 
 	}
 

@@ -14,7 +14,7 @@
 </head>
 <body>
 	<jsp:include page="common/header.jsp"></jsp:include>
-	<div class="ui-widget">
+	<div class="ui-widget">	
 		<form method="post" id="loginForm"
 			action="<c:url value="/j_spring_security_check" />">
 			<div id="accordion" class="ui-accordion ui-widget ui-helper-reset"
@@ -32,10 +32,11 @@
 					aria-labelledby="ui-accordion-accordion-header-0" role="tabpanel"
 					aria-hidden="false">
 
-
-
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
+					<fieldset><legend>Welcome</legend>
+						
+					</fieldset>
 					<fieldset id="username">
 						<label for="login"><spring:message
 								code="login.lbl.username" /></label> <input type="text"

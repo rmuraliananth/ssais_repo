@@ -33,9 +33,10 @@ public class SSAAuthenticationManager extends DaoAuthenticationProvider
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
 		System.out.println("authenticate()");
-		 return super.authenticate(authentication);
-//		return new UsernamePasswordAuthenticationToken(
-//				authentication.getName(), authentication.getCredentials());
+
+		return super.authenticate(authentication);
+		// return new UsernamePasswordAuthenticationToken(
+		// authentication.getName(), authentication.getCredentials());
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class SSAAuthenticationManager extends DaoAuthenticationProvider
 				.findOneByUsername(arg0);
 		if (user == null) {
 			throw new UsernameNotFoundException("User does not exists");
-		}		
+		}
 		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();
 		// authList.add(new
 		// SimpleGrantedAuthority("RememberMeAuthenticatedUser"));

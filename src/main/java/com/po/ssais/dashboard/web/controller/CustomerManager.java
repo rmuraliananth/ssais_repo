@@ -11,12 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  */
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/dashboard")
 public class CustomerManager {
 	private static final Logger LOGGER = Logger
 			.getLogger(CustomerManager.class);
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView getCustomer() {
 		LOGGER.debug("Inside getCustomer() method");
 		ModelAndView modelView = new ModelAndView("dashboard");
