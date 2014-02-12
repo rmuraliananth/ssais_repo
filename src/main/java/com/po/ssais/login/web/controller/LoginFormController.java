@@ -32,6 +32,14 @@ public class LoginFormController {
 	@Value("${login.err.msg}")
 	private String loginErrMsg;
 
+	/** The login err msg. */
+	@Value("${login.err.sessionexpired}")
+	private String loginSessionExpired;
+
+	/** The login error. */
+	@Value("${login.error}")
+	private String loginError;
+
 	/**
 	 * This method is used to handle login mechanism.
 	 * 
@@ -57,9 +65,7 @@ public class LoginFormController {
 			LOGGER.error("An error occurred while saving login details. ",
 					exception);
 			modelView.setViewName("login");
-			modelView
-					.addObject("error",
-							"An error occurred while logging in. Please try again later.");
+			modelView.addObject("errorMessage", loginError);
 			return modelView;
 		}
 		modelView.addObject("userName", loginForm.getUsername());
@@ -73,16 +79,22 @@ public class LoginFormController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView indexPage(@RequestParam(value = "error", required = false) boolean error,HttpSession session) {
+	public ModelAndView indexPage(
+			@RequestParam(value = "error", required = false) boolean error,
+			@RequestParam(value = "sessionexpired", required = false) boolean sessionexpired,
+			HttpSession session) {
 		LOGGER.debug("Inside indexPage method");
-	
+
 		ModelAndView modelView = new ModelAndView();
-		
+
 		if (error) {
 			modelView.addObject("errorMessage", loginErrMsg);
 		}
-		
-		LoginForm loginForm = new LoginForm();		
+
+		if (sessionexpired) {
+			modelView.addObject("errorMessage", loginSessionExpired);
+		}
+
 		modelView.addObject("loginForm", new LoginForm());
 		modelView.setViewName("login");
 		return modelView;

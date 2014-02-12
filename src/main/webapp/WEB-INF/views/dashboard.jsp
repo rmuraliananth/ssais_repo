@@ -15,9 +15,17 @@
 <jsp:include page="common/include.jsp"></jsp:include>
 </head>
 <body>
-	<h2>
-		<spring:message code="dashboard.lbl.header" />
-	</h2>
-	<jsp:include page="common/menu.jsp"></jsp:include>
+	<!-- Header -->
+	<jsp:include page="common/header.jsp"></jsp:include>
+		
+	<!-- Container -->
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+			<h4>
+				<spring:message code="dashboard.lbl.header" />
+			</h4>
+			<jsp:include page="common/menu.jsp"></jsp:include>
+		</div>
+	</div>
 </body>
 </html>

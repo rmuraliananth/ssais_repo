@@ -15,10 +15,18 @@
 <jsp:include page="common/include.jsp"></jsp:include>
 </head>
 <body>
-	<h2>
-		<spring:message code="customer.title" />
-	</h2>
-	<jsp:include page="common/menu.jsp"></jsp:include>
+	<!-- Header -->
+	<jsp:include page="common/header.jsp"></jsp:include>
+		
+	<!-- Container -->
+	<div class="container theme-showcase" role="main">
+			<p>
+				<spring:message code="customer.title" />
+			</p>
+			<jsp:include page="common/menu.jsp"></jsp:include>
+	
+	
+
 	<div>
 
 		<table id="customerList"></table>
@@ -132,6 +140,7 @@
 				});
 			});
 		</script>
+	</div>
 	</div>
 </body>
 </html>
