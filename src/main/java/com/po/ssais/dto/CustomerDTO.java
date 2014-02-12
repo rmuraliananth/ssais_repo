@@ -18,6 +18,7 @@ public class CustomerDTO implements Serializable {
 
 	private int id;
 	private String name;
+	private AccountDTO account;
 
 	/**
 	 * @return the id
@@ -47,5 +48,19 @@ public class CustomerDTO implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the account
+	 */
+	public AccountDTO getAccount() {
+		return account;
+	}
+
+	/**
+	 * @param account the account to set
+	 */
+	public void setAccount(AccountDTO account) {
+		this.account = account;
 	}
 }
