@@ -9,5 +9,6 @@
 	<!-- Maps '/' requests to the 'home' view -->
 	<mvc:view-controller path="/" view-name="auth/index" /> 
 	<context:component-scan base-package="com.po.ssais" />
+	<context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true" />
 
 </beans>

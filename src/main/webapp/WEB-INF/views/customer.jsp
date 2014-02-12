@@ -38,52 +38,75 @@
 						'<spring:message code="customer.lbl.address"/>',
 						'<spring:message code="customer.account.lbl.id"/>',
 						'<spring:message code="customer.account.lbl.name"/>' ];
-				
 
 				var colModel = [
 						{
 							name : '<spring:message code="customer.lbl.id"/>',
-							index : 'id'
+							index : 'id',
+							align : "center",
+							width : 50
+
 						},
 						{
 							name : '<spring:message code="customer.lbl.name"/>',
-							index : 'customer_name'
+							index : 'customer_name',
+							align : "left",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.account.lbl.account_no"/>',
-							index : 'account_no'
+							index : 'account_no',
+							align : "center",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.account.lbl.principal_amount"/>',
-							index : 'principal_amount'
+							index : 'principal_amount',
+							align : "right",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.account.lbl.open_date"/>',
-							index : 'open_date'
+							index : 'open_date',
+							align : "center",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.account.lbl.maturity_date"/>',
-							index : 'maturity_date'
+							index : 'maturity_date',
+							align : "center",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.lbl.phone_no"/>',
-							index : 'phone_no'
+							index : 'phone_no',
+							align : "left",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.lbl.email_id"/>',
-							index : 'email_id'
+							index : 'email_id',
+							align : "left",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.lbl.address"/>',
-							index : 'address'
+							index : 'address',
+							align : "left",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.account.lbl.id"/>',
-							index : 'account_id'
+							index : 'account_id',
+							align : "center",
+							width : 150
 						},
 						{
 							name : '<spring:message code="customer.account.lbl.name"/>',
-							index : 'account_name'
+							index : 'account_name',
+							align : "left",
+							width : 150,
+							hideCol:true
 						} ];
 
 				jQuery("#customerList").jqGrid({
@@ -97,12 +120,15 @@
 					sortname : 'id',
 					viewrecords : true,
 					sortorder : "desc",
+					/*	width : "50%",*/
+					height : "100%",
+					editurl : "server.php",
 					caption : '<spring:message code="customer.lbl.header"/>'
 				});
 				jQuery("#customerList").jqGrid('navGrid', '#customerPager', {
-					edit : false,
-					add : false,
-					del : false
+				/*edit : false,
+				add : false,
+				del : false*/
 				});
 			});
 		</script>

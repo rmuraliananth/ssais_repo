@@ -35,7 +35,7 @@ public class LoginManager extends SimpleUrlAuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		System.out.println("onAuthenticationSuccess()");
+		LOGGER.debug("onAuthenticationSuccess()");
 
 		// if (null != loginService) {
 		// HttpSession session;

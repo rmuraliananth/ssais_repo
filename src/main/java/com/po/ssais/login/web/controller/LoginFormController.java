@@ -29,12 +29,8 @@ public class LoginFormController {
 	LoginService loginService;
 
 	/** The login err msg. */
-	@Value("${loginErrMsg}")
+	@Value("${login.err.msg}")
 	private String loginErrMsg;
-	@Value("${loginExpiryDate}")
-	private String loginExpiryDate;
-	@Value("${loginSuccessMsg}")
-	private String loginSuccessMsg;
 
 	/**
 	 * This method is used to handle login mechanism.
@@ -79,8 +75,14 @@ public class LoginFormController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView indexPage(@RequestParam(value = "error", required = false) boolean error,HttpSession session) {
 		LOGGER.debug("Inside indexPage method");
-		LoginForm loginForm = new LoginForm();
+	
 		ModelAndView modelView = new ModelAndView();
+		
+		if (error) {
+			modelView.addObject("errorMessage", loginErrMsg);
+		}
+		
+		LoginForm loginForm = new LoginForm();		
 		modelView.addObject("loginForm", new LoginForm());
 		modelView.setViewName("login");
 		return modelView;

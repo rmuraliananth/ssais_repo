@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -29,14 +32,30 @@ public class SSAAuthenticationManager extends DaoAuthenticationProvider
 	@Autowired
 	private UserRepository userRepository;
 
+	/** The user not exist. */
+	@Value("${login.err.user.notexist}")
+	private String userNotExist;
+	@Value("${login.err.wrong.password}")
+	private String wrongPassword;
+
 	@Override
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
-		System.out.println("authenticate()");
+		LOGGER.debug("authenticate()");
 
-		return super.authenticate(authentication);
-		// return new UsernamePasswordAuthenticationToken(
-		// authentication.getName(), authentication.getCredentials());
+		com.po.ssais.entities.User user = userRepository
+				.findOneByUsername(authentication.getPrincipal().toString());
+		if (user == null) {
+			throw new BadCredentialsException(userNotExist);
+		}
+
+		if (user != null
+				&& !user.getPassword().equals(authentication.getCredentials())) {
+			throw new BadCredentialsException(wrongPassword);
+		}
+
+		return new UsernamePasswordAuthenticationToken(
+				authentication.getName(), authentication.getCredentials());
 	}
 
 	@Override
@@ -46,12 +65,11 @@ public class SSAAuthenticationManager extends DaoAuthenticationProvider
 		com.po.ssais.entities.User user = userRepository
 				.findOneByUsername(arg0);
 		if (user == null) {
-			throw new UsernameNotFoundException("User does not exists");
+			throw new UsernameNotFoundException(userNotExist);
 		}
 		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();
-		// authList.add(new
-		// SimpleGrantedAuthority("RememberMeAuthenticatedUser"));
-		return new User("admin", "admin", authList);
+		authList.add(new SimpleGrantedAuthority("RememberMeAuthenticatedUser"));
+		return new User(user.getUsername(), user.getPassword(), authList);
 	}
 
 }

@@ -14,16 +14,16 @@ import org.springframework.util.StringUtils;
 
 /**
  * @author muraliananthr
- *
+ * 
  */
 public class LogoutManager extends SimpleUrlLogoutSuccessHandler {
+	final static String COOKIE_NAME = "SPRING_SECURITY_REMEMBER_ME_COOKIE";
 
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		String cookieName = "SPRING_SECURITY_REMEMBER_ME_COOKIE";
-		Cookie cookie = new Cookie(cookieName, null);
+		Cookie cookie = new Cookie(COOKIE_NAME, null);
 		cookie.setMaxAge(0);
 		cookie.setPath(StringUtils.hasLength(request.getContextPath()) ? request
 				.getContextPath() : "/");
