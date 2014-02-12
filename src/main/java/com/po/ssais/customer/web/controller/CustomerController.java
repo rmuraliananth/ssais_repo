@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.JsonFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,23 +35,30 @@ public class CustomerController {
 	@RequestMapping("/view")
 	public @ResponseBody
 	JqGridTableDTO<Object> viewCustomers() {
-		JqGridTableDTO e = new JqGridTableDTO();
-		e.setPage("1");
-		e.setTotal("0");
-		e.setRecords("0");
-		JqGridRowsDTO<Object> row = new JqGridRowsDTO<Object>();
-		List<JqGridRowsDTO<Object>> list = new ArrayList<JqGridRowsDTO<Object>>();
-		CustomerDTO o = null;
+		JqGridTableDTO table = new JqGridTableDTO();
+		List<JqGridRowsDTO<Object>> rowList = new ArrayList<JqGridRowsDTO<Object>>();
+		JqGridRowsDTO<Object> row = null;
+		Object[] cell = null;
+
+		table.setPage("1");
+		table.setTotal("10");
+		table.setRecords("10");
+
 		for (int i = 0; i < 10; i++) {
-			o = new CustomerDTO();
-			row.setId(String.valueOf(i));
+			CustomerDTO o = new CustomerDTO();
 			o.setId(i);
-			row.setCell(o);
-			list.add(row);
-			// rows.addToCell(o);
+			o.setName("Customer-"+i);
+			cell = new Object[10];
+			cell[0] = o.getId();
+			cell[1] = o.getName();			
+			
+			row = new JqGridRowsDTO<Object>();			
+			row.setId(String.valueOf(i));
+			row.setCell(cell);
+			rowList.add(row);
 		}
-		e.setRows(list);
-		return e;
+		table.setRows(rowList);
+		return table;
 	}
 
 }

@@ -3,18 +3,49 @@
  */
 package com.po.ssais.dto;
 
+import java.io.Serializable;
+
 /**
  * @author Murali
  * 
  */
-public class CustomerDTO {
-	private Integer id;
+public class CustomerDTO implements Serializable {
 
-	public Integer getId() {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int id;
+	private String name;
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 }
