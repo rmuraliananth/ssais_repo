@@ -13,58 +13,80 @@
 <jsp:include page="common/include.jsp"></jsp:include>
 </head>
 <body>
+	<!-- Header -->
 	<jsp:include page="common/header.jsp"></jsp:include>
-	<div class="ui-widget">	
-		<form method="post" id="loginForm"
-			action="<c:url value="/j_spring_security_check" />">
-			<div id="accordion" class="ui-accordion ui-widget ui-helper-reset"
-				role="tablist">
-				<h3
-					class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-header-active ui-state-active ui-corner-top"
-					role="tab" id="ui-accordion-accordion-header-0"
-					aria-controls="ui-accordion-accordion-panel-0" aria-selected="true"
-					aria-expanded="true" tabindex="0">
-					<spring:message code="login.lbl.header" />
-				</h3>
-				<div
-					class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active"
-					id="ui-accordion-accordion-panel-0"
-					aria-labelledby="ui-accordion-accordion-header-0" role="tabpanel"
-					aria-hidden="false">
-
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-					<fieldset><legend>Welcome</legend>
-						
-					</fieldset>
-					<fieldset id="username">
-						<label for="login"><spring:message
-								code="login.lbl.username" /></label> <input type="text"
-							name="j_username" id="j_username" class="">
-					</fieldset>
-					<fieldset id="pwd">
-						<label for="password"><spring:message
-								code="login.lbl.password" /></label> <input type="password"
-							name="j_password" id="j_password" placeholder="Password">
-					</fieldset>
-					<fieldset id="rememberme">
-						<input type="checkbox" name="_spring_security_remember_me"
-							id="_spring_security_remember_me"> <label><spring:message
-								code="login.lbl.rememberme" /></label>
-					</fieldset>
-					<input type="submit"
-						class="ui-button ui-widget ui-state-default ui-corner-all"
-						value="<spring:message
-					code="login.btn.submit" />"
-						name="Login"> <input type="reset"
-						class="ui-button ui-widget ui-state-default ui-corner-all"
-						value="<spring:message
-					code="login.btn.reset" />"
-						name="Login">
+		
+	<!-- Container -->
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col-sm-2"></div>		
+				<div class="col-sm-7">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title"><spring:message code="login.lbl.header" /></h3>
+						</div>
+						<div class="panel-body ui-widget ">
+							<form method="post" id="loginForm" action="<c:url value="/j_spring_security_check" />">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								
+						      	<div class="row">
+									<div class="col-sm-12">
+										<c:if test="${not empty errorMessage}">
+											<div class="alert alert-danger">
+									        	<c:out value="${errorMessage}"></c:out>
+									      	</div>
+							      		</c:if>						      	
+									</div>	
+								</div>
+								
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-3">
+										<spring:message code="login.lbl.username" />
+									</div>
+									<div class="col-sm-4">
+										<input type="text" name="j_username" id="j_username">
+									</div>									
+								</div>
+								<p></p>
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-3">
+										<spring:message code="login.lbl.password" />
+									</div>
+									<div class="col-sm-4">
+										<input type="password" name="j_password" id="j_password"  placeholder="Password">
+									</div>									
+								</div>
+								<p></p>
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-3">
+									</div>
+									<div class="col-sm-4">
+										<input type="checkbox" name="_spring_security_remember_me" id="_spring_security_remember_me">
+										<spring:message code="login.lbl.rememberme" />
+									</div>									
+								</div>
+								<p></p>
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-3">
+									</div>
+									<div class="col-sm-4">
+										<input type="submit" class="btn btn-sm btn-primary" value="<spring:message code="login.btn.submit" />" name="Login">
+										<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="login.btn.reset" />" name="Login">
+									</div>									
+								</div>						
+							</form>
+						</div>
+					</div>
 				</div>
-			</div>
-		</form>
+				<div class="col-sm-2"></div>
+			</div>			
+		</div>
+		<jsp:include page="common/footer.jsp"></jsp:include>
 	</div>
-	<jsp:include page="common/footer.jsp"></jsp:include>
 </body>
 </html>
