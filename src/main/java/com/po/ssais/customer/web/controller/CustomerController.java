@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.po.ssais.dto.AccountDTO;
 import com.po.ssais.dto.CustomerDTO;
 import com.po.ssais.dto.jqgrid.JqGridRowsDTO;
 import com.po.ssais.dto.jqgrid.JqGridTableDTO;
@@ -36,7 +37,7 @@ public class CustomerController {
 	public @ResponseBody
 	JqGridTableDTO<Object> viewCustomers() {
 		JqGridTableDTO table = new JqGridTableDTO();
-		List<JqGridRowsDTO<Object>> rowList = new ArrayList<JqGridRowsDTO<Object>>();
+		List<CustomerDTO> rowList = new ArrayList<CustomerDTO>();
 		JqGridRowsDTO<Object> row = null;
 		Object[] cell = null;
 
@@ -47,15 +48,20 @@ public class CustomerController {
 		for (int i = 0; i < 10; i++) {
 			CustomerDTO o = new CustomerDTO();
 			o.setId(i);
-			o.setName("Customer-"+i);
+			o.setName("Customer-" + i);
+			AccountDTO accountDTO = new AccountDTO();
+			accountDTO.setId(10 + i);
+			accountDTO.setAccountNo("123-" + i);
+			o.setAccount(accountDTO);
 			cell = new Object[10];
 			cell[0] = o.getId();
-			cell[1] = o.getName();			
-			
-			row = new JqGridRowsDTO<Object>();			
+			cell[1] = o.getName();
+
+			row = new JqGridRowsDTO<Object>();
 			row.setId(String.valueOf(i));
 			row.setCell(cell);
-			rowList.add(row);
+			// rowList.add(row);
+			rowList.add(o);
 		}
 		table.setRows(rowList);
 		return table;

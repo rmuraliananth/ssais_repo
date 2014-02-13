@@ -31,6 +31,7 @@
 
 		<table id="customerList"></table>
 		<div id="customerPager"></div>
+
 		<script type="text/javascript">
 			$(function() {
 
@@ -49,20 +50,20 @@
 
 				var colModel = [
 						{
-							name : '<spring:message code="customer.lbl.id"/>',
+							name : 'id',
 							index : 'id',
 							align : "center",
 							width : 50
 
 						},
 						{
-							name : '<spring:message code="customer.lbl.name"/>',
+							name : 'name',
 							index : 'customer_name',
 							align : "left",
 							width : 150
 						},
 						{
-							name : '<spring:message code="customer.account.lbl.account_no"/>',
+							name : 'account.accountNo',
 							index : 'account_no',
 							align : "center",
 							width : 150
@@ -104,7 +105,7 @@
 							width : 150
 						},
 						{
-							name : '<spring:message code="customer.account.lbl.id"/>',
+							name : 'account.id',
 							index : 'account_id',
 							align : "center",
 							width : 150
@@ -113,11 +114,10 @@
 							name : '<spring:message code="customer.account.lbl.name"/>',
 							index : 'account_name',
 							align : "left",
-							width : 150,
-							hideCol:true
+							width : 150
 						} ];
 
-				jQuery("#customerList").jqGrid({
+				$("#customerList").jqGrid({
 					url : 'view?q=2',
 					datatype : "json",
 					colNames : colNames,
@@ -128,16 +128,18 @@
 					sortname : 'id',
 					viewrecords : true,
 					sortorder : "desc",
-					/*	width : "50%",*/
+					autowidth : true,
+					rownumbers : true,
 					height : "100%",
 					editurl : "server.php",
 					caption : '<spring:message code="customer.lbl.header"/>'
 				});
-				jQuery("#customerList").jqGrid('navGrid', '#customerPager', {
-				/*edit : false,
-				add : false,
-				del : false*/
+				$("#customerList").jqGrid('navGrid', '#customerPager', {
+					edit : false,
+					add : false,
+					del : false
 				});
+
 			});
 		</script>
 	</div>

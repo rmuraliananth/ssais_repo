@@ -19,14 +19,8 @@ public class JqGridTableDTO<T> implements Serializable {
 	private String page;
 	private String total;
 	private String records;
-	private List<JqGridRowsDTO<T>> rows;
+	private List<T> rows;
 
-	public void addToCell(JqGridRowsDTO<T> t) {
-		if (rows == null) {
-			rows = new ArrayList<JqGridRowsDTO<T>>();
-		}
-		rows.add(t);
-	}
 
 	/**
 	 * @return the page
@@ -76,16 +70,17 @@ public class JqGridTableDTO<T> implements Serializable {
 	/**
 	 * @return the rows
 	 */
-	public List<JqGridRowsDTO<T>> getRows() {
+	public List<T> getRows() {
 		return rows;
 	}
 
 	/**
-	 * @param rows
-	 *            the rows to set
+	 * @param rows the rows to set
 	 */
-	public void setRows(List<JqGridRowsDTO<T>> rows) {
+	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
+
+	
 
 }
