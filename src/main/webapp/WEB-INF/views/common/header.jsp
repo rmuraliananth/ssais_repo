@@ -7,7 +7,7 @@
 				<spring:message code="ssais.header" />
 			</div>
 		</div>	
-		<c:if test="${not empty sessionScope.USER_INFO}">
+		<c:if test="${not empty sessionScope.USER_INFO}">			
 			<jsp:include page="menu.jsp"></jsp:include>
 		</c:if>	
 	</div>

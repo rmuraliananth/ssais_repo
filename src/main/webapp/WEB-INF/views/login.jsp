@@ -26,8 +26,8 @@
 						<div class="panel-heading">
 							<h3 class="panel-title"><spring:message code="login.lbl.header" /></h3>
 						</div>
-						<div class="panel-body ui-widget ">
-							<form method="post" id="loginForm" action="<c:url value="/j_spring_security_check" />">
+						<div class="panel-body  ui-widget">
+							<form method="post" id="loginForm" class="navbar-form" action="<c:url value="/j_spring_security_check" />">
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								
 						      	<div class="row">
@@ -46,17 +46,17 @@
 										<spring:message code="login.lbl.username" />
 									</div>
 									<div class="col-sm-4">
-										<input type="text" name="j_username" id="j_username">
+										<input type="text" class="form-control" name="j_username" id="j_username" placeholder="Username" required autofocus>
 									</div>									
 								</div>
 								<p></p>
 								<div class="row">
 									<div class="col-sm-2"></div>
 									<div class="col-sm-3">
-										<spring:message code="login.lbl.password" />
+										<spring:message  code="login.lbl.password" />
 									</div>
-									<div class="col-sm-4">
-										<input type="password" name="j_password" id="j_password"  placeholder="Password">
+									<div class="col-sm-4"> 
+										<input type="password" class="form-control" name="j_password" id="j_password"  placeholder="Password" required>
 									</div>									
 								</div>
 								<p></p>
