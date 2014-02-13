@@ -76,17 +76,20 @@
 									</div>
 									<div class="col-sm-4">
 										<input type="submit" class="btn btn-sm btn-primary" value="<spring:message code="login.btn.submit" />" name="Login">
-										<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="login.btn.reset" />" name="Login">
+										<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="login.btn.reset" />" name="Reset">
 									</div>									
-								</div>						
+								</div>	
 							</form>
+							<p></p>		
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-2"></div>
 			</div>			
-		</div>
-		<jsp:include page="common/footer.jsp"></jsp:include>
+		</div>		
 	</div>
+	
+	<!-- Footer -->
+	<jsp:include page="common/footer.jsp"></jsp:include>
 </body>
 </html>

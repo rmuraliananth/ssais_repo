@@ -21,11 +21,11 @@
 	<!-- Container -->
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
-			<h4>
 				<spring:message code="dashboard.lbl.header" />
-			</h4>
-			<jsp:include page="common/menu.jsp"></jsp:include>
 		</div>
 	</div>
+	
+	<!-- Footer -->
+	<jsp:include page="common/footer.jsp"></jsp:include>
 </body>
 </html>

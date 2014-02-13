@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<div class="ui-widget ui-helper-reset">
-	<p>
+<div id="footer">
+	<p class="text-muted">
 		<spring:message code="ssais.footer" />
 	</p>
 </div>

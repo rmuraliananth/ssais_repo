@@ -24,7 +24,6 @@ public class LoginManager extends SimpleUrlAuthenticationSuccessHandler {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = Logger.getLogger(LoginManager.class);
-	
 
 	/** The user service. */
 	@Autowired
@@ -47,25 +46,16 @@ public class LoginManager extends SimpleUrlAuthenticationSuccessHandler {
 		if (session == null) {
 			sendRedirect(request, response, "/auth/index?sessionexpired=true");
 		} else {
-
 			user = loginService.getUser(authentication.getName());
-
 			if (user != null && session != null) {
-//				session.setAttribute(TPDCommonConstants.USER_ID,
-//						user.getUserId());
-//				session.setAttribute(TPDCommonConstants.USER_NAME,
-//						user.getUserName());
-//				session.setAttribute(TPDCommonConstants.USER_EMAIL,
-//						user.getEmailId());
-//				session.setAttribute(TPDCommonConstants.TIME_ZONE, timeZone);
-//				session.setAttribute(TPDCommonConstants.DESKTOP,
-//						Boolean.valueOf(desktop));
-//				session.setAttribute(TPDCommonConstants.LOGIN_SUCCESS,
-//						TPDCommonConstants.LOGIN_SUCCESS);
+				session.setAttribute("USER_INFO", user);
+				sendRedirect(request, response, "/dashboard/view");
+			} else {
+				sendRedirect(request, response,
+						"/auth/index?sessionexpired=true");
 			}
 
 		}
-		sendRedirect(request, response, "/dashboard/view");
 
 	}
 

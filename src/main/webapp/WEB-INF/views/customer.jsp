@@ -20,129 +20,138 @@
 		
 	<!-- Container -->
 	<div class="container theme-showcase" role="main">
-			<p>
-				<spring:message code="customer.title" />
-			</p>
-			<jsp:include page="common/menu.jsp"></jsp:include>
+			<div class="row">
+				<div class="col-sm-8">
+					<spring:message code="customer.title" />
+				</div>
+				<div class="col-sm-4">
+					<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="customer.btn.add" />" name="Add">
+					<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="customer.btn.edit" />" name="Edit">
+					<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="customer.btn.delete" />" name="Delete">
+					<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="customer.btn.refresh" />" name="Refresh">
+				</div>	
+			</div>
+			<p></p>
+			<div class="row">
+				<div class="col-sm-12">
+					<table id="customerList"></table>
+					<div id="customerPager"></div>
+				</div>
+			</div>			
+	</div>
 	
+	<!-- Footer -->
+	<jsp:include page="common/footer.jsp"></jsp:include>
 	
+	<script type="text/javascript">
+		$(function() {
 
-	<div>
+			var colNames = [
+					'<spring:message code="customer.lbl.id"/>',
+					'<spring:message code="customer.lbl.name"/>',
+					'<spring:message code="customer.account.lbl.account_no"/>',
+					'<spring:message code="customer.account.lbl.principal_amount"/>',
+					'<spring:message code="customer.account.lbl.open_date"/>',
+					'<spring:message code="customer.account.lbl.maturity_date"/>',
+					'<spring:message code="customer.lbl.phone_no"/>',
+					'<spring:message code="customer.lbl.email_id"/>',
+					'<spring:message code="customer.lbl.address"/>',
+					'<spring:message code="customer.account.lbl.id"/>',
+					'<spring:message code="customer.account.lbl.name"/>' ];
 
-		<table id="customerList"></table>
-		<div id="customerPager"></div>
+			var colModel = [
+					{
+						name : 'id',
+						index : 'id',
+						align : "center",
+						width : 50
 
-		<script type="text/javascript">
-			$(function() {
+					},
+					{
+						name : 'name',
+						index : 'customer_name',
+						align : "left",
+						width : 150
+					},
+					{
+						name : 'account.accountNo',
+						index : 'account_no',
+						align : "center",
+						width : 150
+					},
+					{
+						name : '<spring:message code="customer.account.lbl.principal_amount"/>',
+						index : 'principal_amount',
+						align : "right",
+						width : 150
+					},
+					{
+						name : '<spring:message code="customer.account.lbl.open_date"/>',
+						index : 'open_date',
+						align : "center",
+						width : 150
+					},
+					{
+						name : '<spring:message code="customer.account.lbl.maturity_date"/>',
+						index : 'maturity_date',
+						align : "center",
+						width : 150
+					},
+					{
+						name : '<spring:message code="customer.lbl.phone_no"/>',
+						index : 'phone_no',
+						align : "left",
+						width : 150
+					},
+					{
+						name : '<spring:message code="customer.lbl.email_id"/>',
+						index : 'email_id',
+						align : "left",
+						width : 150
+					},
+					{
+						name : '<spring:message code="customer.lbl.address"/>',
+						index : 'address',
+						align : "left",
+						width : 150
+					},
+					{
+						name : 'account.id',
+						index : 'account_id',
+						align : "center",
+						width : 150
+					},
+					{
+						name : '<spring:message code="customer.account.lbl.name"/>',
+						index : 'account_name',
+						align : "left",
+						width : 150
+					} ];
 
-				var colNames = [
-						'<spring:message code="customer.lbl.id"/>',
-						'<spring:message code="customer.lbl.name"/>',
-						'<spring:message code="customer.account.lbl.account_no"/>',
-						'<spring:message code="customer.account.lbl.principal_amount"/>',
-						'<spring:message code="customer.account.lbl.open_date"/>',
-						'<spring:message code="customer.account.lbl.maturity_date"/>',
-						'<spring:message code="customer.lbl.phone_no"/>',
-						'<spring:message code="customer.lbl.email_id"/>',
-						'<spring:message code="customer.lbl.address"/>',
-						'<spring:message code="customer.account.lbl.id"/>',
-						'<spring:message code="customer.account.lbl.name"/>' ];
-
-				var colModel = [
-						{
-							name : 'id',
-							index : 'id',
-							align : "center",
-							width : 50
-
-						},
-						{
-							name : 'name',
-							index : 'customer_name',
-							align : "left",
-							width : 150
-						},
-						{
-							name : 'account.accountNo',
-							index : 'account_no',
-							align : "center",
-							width : 150
-						},
-						{
-							name : '<spring:message code="customer.account.lbl.principal_amount"/>',
-							index : 'principal_amount',
-							align : "right",
-							width : 150
-						},
-						{
-							name : '<spring:message code="customer.account.lbl.open_date"/>',
-							index : 'open_date',
-							align : "center",
-							width : 150
-						},
-						{
-							name : '<spring:message code="customer.account.lbl.maturity_date"/>',
-							index : 'maturity_date',
-							align : "center",
-							width : 150
-						},
-						{
-							name : '<spring:message code="customer.lbl.phone_no"/>',
-							index : 'phone_no',
-							align : "left",
-							width : 150
-						},
-						{
-							name : '<spring:message code="customer.lbl.email_id"/>',
-							index : 'email_id',
-							align : "left",
-							width : 150
-						},
-						{
-							name : '<spring:message code="customer.lbl.address"/>',
-							index : 'address',
-							align : "left",
-							width : 150
-						},
-						{
-							name : 'account.id',
-							index : 'account_id',
-							align : "center",
-							width : 150
-						},
-						{
-							name : '<spring:message code="customer.account.lbl.name"/>',
-							index : 'account_name',
-							align : "left",
-							width : 150
-						} ];
-
-				$("#customerList").jqGrid({
-					url : 'view?q=2',
-					datatype : "json",
-					colNames : colNames,
-					colModel : colModel,
-					rowNum : 10,
-					rowList : [ 10, 20, 30 ],
-					pager : '#customerPager',
-					sortname : 'id',
-					viewrecords : true,
-					sortorder : "desc",
-					autowidth : true,
-					rownumbers : true,
-					height : "100%",
-					editurl : "server.php",
-					caption : '<spring:message code="customer.lbl.header"/>'
-				});
-				$("#customerList").jqGrid('navGrid', '#customerPager', {
-					edit : false,
-					add : false,
-					del : false
-				});
-
+			$("#customerList").jqGrid({
+				url : 'view?q=2',
+				datatype : "json",
+				colNames : colNames,
+				colModel : colModel,
+				rowNum : 10,
+				rowList : [ 10, 20, 30 ],
+				pager : '#customerPager',
+				sortname : 'id',
+				viewrecords : true,
+				sortorder : "desc",
+				autowidth : true,
+				rownumbers : true,
+				height : "100%",
+				editurl : "server.php",
+				caption : '<spring:message code="customer.lbl.header"/>'
 			});
-		</script>
-	</div>
-	</div>
+			$("#customerList").jqGrid('navGrid', '#customerPager', {
+				edit : false,
+				add : false,
+				del : false
+			});
+
+		});
+	</script>
 </body>
 </html>
