@@ -21,6 +21,9 @@ public class JqGridTableDTO<T> implements Serializable {
 	private String records;
 	private List<T> rows;
 
+	protected void populatePageFooter() {
+
+	}
 
 	/**
 	 * @return the page
@@ -75,12 +78,11 @@ public class JqGridTableDTO<T> implements Serializable {
 	}
 
 	/**
-	 * @param rows the rows to set
+	 * @param rows
+	 *            the rows to set
 	 */
 	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
-
-	
 
 }

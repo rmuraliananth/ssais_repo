@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="navbar-header ui-widget ui-helper-reset">
 			<div class="navbar-brand" style="color: white;">
-				<spring:message code="ssais.header" />
+				<spring:message code="ssais.header" />				
 			</div>
 		</div>	
 		<c:if test="${not empty sessionScope.USER_INFO}">			

@@ -19,7 +19,7 @@ var CustomerController = function($scope, $http) {
         $scope.resetError();
 
         $http.post('customer/addCustomer', customer).success(function() {
-            $scope.fetchcustomersList();
+           // $scope.fetchcustomersList();
             $scope.customer.name = '';
             $scope.customer.speed = '';
             $scope.customer.diesel = false;
@@ -32,7 +32,7 @@ var CustomerController = function($scope, $http) {
         $scope.resetError();
 
         $http.put('customer/updateCustomer', customer).success(function() {
-            $scope.fetchcustomersList();
+         //   $scope.fetchcustomersList();
             $scope.customer.name = '';
             $scope.editMode = false;
         }).error(function() {
@@ -83,7 +83,7 @@ var CustomerController = function($scope, $http) {
         $scope.errorMessage = message;
     }
 
-    $scope.fetchCustomersList();
+  //  $scope.fetchCustomersList();
 
     $scope.predicate = 'id';
 }

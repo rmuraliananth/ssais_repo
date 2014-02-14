@@ -18,6 +18,10 @@ public class CustomerDTO implements Serializable {
 
 	private int id;
 	private String name;
+	private String emailId;
+	private String phoneNo;
+	private String address;
+
 	private AccountDTO account;
 
 	/**
@@ -51,6 +55,36 @@ public class CustomerDTO implements Serializable {
 	}
 
 	/**
+	 * @return the emailId
+	 */
+	public String getEmailId() {
+		return emailId;
+	}
+
+	/**
+	 * @param emailId
+	 *            the emailId to set
+	 */
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	/**
+	 * @return the phoneNo
+	 */
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	/**
+	 * @param phoneNo
+	 *            the phoneNo to set
+	 */
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+
+	/**
 	 * @return the account
 	 */
 	public AccountDTO getAccount() {
@@ -58,9 +92,26 @@ public class CustomerDTO implements Serializable {
 	}
 
 	/**
-	 * @param account the account to set
+	 * @param account
+	 *            the account to set
 	 */
 	public void setAccount(AccountDTO account) {
 		this.account = account;
 	}
+
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param address
+	 *            the address to set
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 }
