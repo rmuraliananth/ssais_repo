@@ -41,9 +41,10 @@ App.controller('CustomerController', [ '$scope','$http', function($scope, $http)
     	var selRowId = jQuery("#customerList").jqGrid('getGridParam','selrow'); 
     	if( selRowId != null ){
     		var rowNum = jQuery("#customerList").jqGrid('getGridParam','rowNum');
+    		var page =  jQuery("#customerList").jqGrid('getGridParam','page') -1;
     		var userData =  jQuery("#customerList").getGridParam("userData");  		
     		if((selRowId-1)>userData.length){
-    			selRowId = selRowId-rowNum;
+    			selRowId = selRowId-(page*rowNum);
 			}
     		$scope.customer = userData[selRowId-1];    		
     		$scope.editMode = true;
