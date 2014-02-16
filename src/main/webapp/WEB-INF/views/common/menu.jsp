@@ -8,7 +8,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="<spring:url value="/customer/page"></spring:url>"> 
+			<a id="customer" href="<spring:url value="/customer/page"></spring:url>"> 
 				<spring:message	code="menu.lbl.customer" />
 			</a>
 		</li>

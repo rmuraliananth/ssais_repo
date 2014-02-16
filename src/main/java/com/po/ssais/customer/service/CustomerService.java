@@ -6,6 +6,7 @@ package com.po.ssais.customer.service;
 import java.util.List;
 
 import com.po.ssais.dto.CustomerDTO;
+import com.po.ssais.dto.jqgrid.JqGridSearchDTO;
 
 /**
  * @author muraliananthr
@@ -13,7 +14,7 @@ import com.po.ssais.dto.CustomerDTO;
  */
 public interface CustomerService {
 
-	public List<CustomerDTO> fetchCustomers();
+	public List<CustomerDTO> fetchCustomers(final JqGridSearchDTO searchDTO);
 
 	public void addCustomer(CustomerDTO customerDTO);
 

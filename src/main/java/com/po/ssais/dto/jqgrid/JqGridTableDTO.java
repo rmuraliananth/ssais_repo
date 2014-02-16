@@ -4,7 +4,6 @@
 package com.po.ssais.dto.jqgrid;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +19,11 @@ public class JqGridTableDTO<T> implements Serializable {
 	private String total;
 	private String records;
 	private List<T> rows;
+	private T userdata;
 
+	protected void populatePageFooter() {
+
+	}
 
 	/**
 	 * @return the page
@@ -75,12 +78,26 @@ public class JqGridTableDTO<T> implements Serializable {
 	}
 
 	/**
-	 * @param rows the rows to set
+	 * @param rows
+	 *            the rows to set
 	 */
 	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
 
-	
+	/**
+	 * @return the userdata
+	 */
+	public T getUserdata() {
+		return userdata;
+	}
+
+	/**
+	 * @param userdata
+	 *            the userdata to set
+	 */
+	public void setUserdata(T userdata) {
+		this.userdata = userdata;
+	}
 
 }

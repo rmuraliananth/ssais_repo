@@ -1,48 +1,48 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <!-- Bootstrap core CSS -->
 <link
-	href="<c:url value="/"/>resources/js/bootstrap-3.1.0/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Bootstrap theme -->
 <link
-	href="<c:url value="/"/>resources/js/bootstrap-3.1.0/css/bootstrap-theme.min.css"
+	href="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="<c:url value="/"/>resources/js/bootstrap-3.1.0/theme.css"
+<link
+	href="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/theme.css"
 	rel="stylesheet">
 
 
 
 <link rel="stylesheet"
-	href="<c:url value="/"/>resources/js/jquery-ui-1.10.4/themes/base/jquery.ui.all.css">
+	href="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4/themes/base/jquery.ui.all.css">
 
 <link rel="stylesheet" type="text/css" media="screen"
-	href="<c:url value="/"/>resources/js/jquery.jqGrid-4.5.4/css/ui.jqgrid.css" />
+	href="${pageContext.request.contextPath}/resources/js/jquery.jqGrid-4.5.4/css/ui.jqgrid.css" />
 
 <!-- 
 <link rel="stylesheet"
-	href="<c:url value="/"/>resources/js/jquery-ui-1.10.4/demos.css">
+	href="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4/demos.css">
  -->
- 
- <script
-	src="<c:url value="/"/>resources/js/jquery-ui-1.10.4/jquery-1.10.2.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4/jquery-1.10.2.js"></script>
 
 <script>
 	$.uiBackCompat = false;
 </script>
 
 <script
-	src="<c:url value="/"/>resources/js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
 
 <script
-	src="<c:url value="/"/>resources/js/jquery.jqGrid-4.5.4/js/i18n/grid.locale-en.js"
+	src="${pageContext.request.contextPath}/resources/js/jquery.jqGrid-4.5.4/js/i18n/grid.locale-en.js"
 	type="text/javascript"></script>
 <script
-	src="<c:url value="/"/>resources/js/jquery.jqGrid-4.5.4/js/jquery.jqGrid.min.js"
+	src="${pageContext.request.contextPath}/resources/js/jquery.jqGrid-4.5.4/js/jquery.jqGrid.min.js"
 	type="text/javascript"></script>
 
 <!-- Just for debugging purposes. Don't actually copy this line! -->
