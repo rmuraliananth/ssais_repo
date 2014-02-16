@@ -88,21 +88,6 @@ public class CustomerDTO implements Serializable {
 	}
 
 	/**
-	 * @return the account
-	 */
-	public AccountDTO getAccount() {
-		return account;
-	}
-
-	/**
-	 * @param account
-	 *            the account to set
-	 */
-	public void setAccount(AccountDTO account) {
-		this.account = account;
-	}
-
-	/**
 	 * @return the address
 	 */
 	public String getAddress() {
@@ -115,6 +100,21 @@ public class CustomerDTO implements Serializable {
 	 */
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	/**
+	 * @return the crtTsp
+	 */
+	public Date getCrtTsp() {
+		return crtTsp;
+	}
+
+	/**
+	 * @param crtTsp
+	 *            the crtTsp to set
+	 */
+	public void setCrtTsp(Date crtTsp) {
+		this.crtTsp = crtTsp;
 	}
 
 	/**
@@ -133,18 +133,17 @@ public class CustomerDTO implements Serializable {
 	}
 
 	/**
-	 * @return the crtTsp
+	 * @return the account
 	 */
-	public Date getCrtTsp() {
-		return crtTsp;
+	public AccountDTO getAccount() {
+		return account;
 	}
 
 	/**
-	 * @param crtTsp
-	 *            the crtTsp to set
+	 * @param account
+	 *            the account to set
 	 */
-	public void setCrtTsp(Date crtTsp) {
-		this.crtTsp = crtTsp;
+	public void setAccount(AccountDTO account) {
+		this.account = account;
 	}
-
 }

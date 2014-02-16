@@ -71,9 +71,6 @@ public class CustomerController {
 		double totalPages = 0;
 		double pages = page;
 		double limit = rows;
-		if (searchDTO.getTotal() > 0) {
-			totalPages = Math.ceil(searchDTO.getTotal() / limit);
-		}
 
 		if (pages > totalPages) {
 			pages = totalPages;
@@ -81,6 +78,7 @@ public class CustomerController {
 		table.setPage(String.valueOf(pages));
 		table.setTotal(String.valueOf(totalPages));
 		table.setRecords(String.valueOf(searchDTO.getTotal()));
+		table.setRecords(String.valueOf(rowList.size()));
 		table.setRows(rowList);
 		table.setUserdata(rowList);
 		return table;
