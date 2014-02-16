@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<CustomerDTO> fetchCustomers(final JqGridSearchDTO searchDTO) {
 		LOGGER.debug("Fetch Customers");
-		// TODO :: apply sort
+		// TODO :: apply filter condition
 
 		final PageRequest pageRequest = new PageRequest(
 				searchDTO.getPage() - 1, searchDTO.getRows());
