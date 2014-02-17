@@ -30,6 +30,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
+
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ModelAndView loadCustomerPage() {
 		LOGGER.debug("Inside loadCustomerPage() method");

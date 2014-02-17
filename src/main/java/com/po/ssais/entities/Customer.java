@@ -3,6 +3,7 @@ package com.po.ssais.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -34,7 +35,10 @@ public class Customer implements Serializable {
     @Temporal( TemporalType.TIMESTAMP)
 	@Column(name="upt_tsp")
 	private Date uptTsp;
-    
+
+	//bi-directional many-to-one association to Account
+	@OneToMany(mappedBy="customer")
+	private Set<Account> accounts;
 
     public Customer() {
     }
@@ -95,4 +99,12 @@ public class Customer implements Serializable {
 		this.uptTsp = uptTsp;
 	}
 
+	public Set<Account> getAccounts() {
+		return this.accounts;
+	}
+
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
+	}
+	
 }

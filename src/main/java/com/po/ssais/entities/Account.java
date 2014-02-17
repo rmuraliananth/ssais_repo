@@ -55,6 +55,10 @@ public class Account implements Serializable {
 	@Column(name="upt_tsp")
 	private Date uptTsp;
 
+	//bi-directional many-to-one association to Customer
+    @ManyToOne
+	private Customer customer;
+
     public Account() {
     }
 
@@ -154,4 +158,12 @@ public class Account implements Serializable {
 		this.uptTsp = uptTsp;
 	}
 
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
 }
