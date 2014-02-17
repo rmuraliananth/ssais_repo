@@ -4,6 +4,7 @@
 package com.po.ssais.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Murali
@@ -18,6 +19,24 @@ public class AccountDTO implements Serializable {
 
 	private int id;
 	private String accountNo;
+	private Double principalAmount;
+	private Date openDate;
+	private Date maturityDate;
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the accountNo
@@ -35,18 +54,48 @@ public class AccountDTO implements Serializable {
 	}
 
 	/**
-	 * @return the id
+	 * @return the principalAmount
 	 */
-	public int getId() {
-		return id;
+	public Double getPrincipalAmount() {
+		return principalAmount;
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param principalAmount
+	 *            the principalAmount to set
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setPrincipalAmount(Double principalAmount) {
+		this.principalAmount = principalAmount;
+	}
+
+	/**
+	 * @return the openDate
+	 */
+	public Date getOpenDate() {
+		return openDate;
+	}
+
+	/**
+	 * @param openDate
+	 *            the openDate to set
+	 */
+	public void setOpenDate(Date openDate) {
+		this.openDate = openDate;
+	}
+
+	/**
+	 * @return the maturityDate
+	 */
+	public Date getMaturityDate() {
+		return maturityDate;
+	}
+
+	/**
+	 * @param maturityDate
+	 *            the maturityDate to set
+	 */
+	public void setMaturityDate(Date maturityDate) {
+		this.maturityDate = maturityDate;
 	}
 
 }

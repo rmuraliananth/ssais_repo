@@ -35,9 +35,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<CustomerDTO> fetchCustomers(final JqGridSearchDTO searchDTO) {
 		LOGGER.debug("Fetch Customers");
 		// TODO :: apply filter condition
-
-		final PageRequest pageRequest = new PageRequest(
-				searchDTO.getPage() - 1, searchDTO.getRows());
+		int page = (searchDTO.getPage() == 0 ? 0 : searchDTO.getPage() - 1);
+		final PageRequest pageRequest = new PageRequest(page,
+				searchDTO.getRows());
 		Page<Customer> cu = customerRepository.findAll(pageRequest);
 		searchDTO.setTotal(cu.getTotalElements());
 		List<Customer> customerEntities = cu.getContent();

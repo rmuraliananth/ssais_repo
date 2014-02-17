@@ -15,8 +15,9 @@
 
 <!-- Angular core JavaScript -->
 <script src="${pageContext.request.contextPath}/resources/js/angular-1.2.12/angular.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/angular-1.2.12/angular-route.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/services.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/controller/CustomerController.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/services.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/filters.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/directives.js"></script>

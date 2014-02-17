@@ -34,6 +34,7 @@ public class Customer implements Serializable {
     @Temporal( TemporalType.TIMESTAMP)
 	@Column(name="upt_tsp")
 	private Date uptTsp;
+    
 
     public Customer() {
     }

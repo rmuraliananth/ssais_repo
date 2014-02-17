@@ -6,49 +6,65 @@
  * @constructor
  */
 var CustomerController = function($scope, $http) {
-    $scope.customer = {};
+	$scope.customer = {};
     $scope.editMode = false;
 
     $scope.fetchCustomersList = function() {
-        $http.get('customers/customerslist.json').success(function(customerList){
-            $scope.customers = customerList;
-        });
+    	 $scope.resetError();
+    	$("#customerList").trigger("reloadGrid");		  
     }
+    
+    $scope.save = function(customer) {
+        if(customer.$valid) {
+            //Traitement ici...
+            console.log("valid");
+            console.log(user);
+        }
+    };
 
     $scope.addNewCustomer = function(customer) {
-        $scope.resetError();
-
-        $http.post('customer/addCustomer', customer).success(function() {
-           // $scope.fetchcustomersList();
-            $scope.customer.name = '';
-            $scope.customer.speed = '';
-            $scope.customer.diesel = false;
+        $scope.resetCustomerForm();        
+        $http.post('addCustomer', customer).success(function() {
+            $scope.fetchCustomersList();
+            $("#customerModel").modal('hide');
         }).error(function() {
-            $scope.setError('Could not add a new customer');
+            $scope.setModalError('Could not add a new customer');
         });
     }
 
-    $scope.updateCustomer = function(customer) {
-        $scope.resetError();
-
-        $http.put('customer/updateCustomer', customer).success(function() {
-         //   $scope.fetchcustomersList();
-            $scope.customer.name = '';
-            $scope.editMode = false;
+    $scope.updateCustomer = function(customer) {    	 
+    	$scope.editMode = true;
+        $http.put('updateCustomer', customer).success(function() {
+        	$scope.fetchCustomersList();
+            $("#customerModel").modal('hide');
+            $scope.resetCustomerForm();      
         }).error(function() {
-            $scope.setError('Could not update the customer');
+            $scope.setModalError('Could not update the customer.');
         });
     }
 
-    $scope.editcustomer = function(customer) {
-        $scope.resetError();
-        $scope.customer = customer;
-        $scope.editMode = true;
+    $scope.editCustomer = function() {
+    	$scope.resetCustomerForm();   
+    	var selRowId = jQuery("#customerList").jqGrid('getGridParam','selrow'); 
+    	if( selRowId != null ){
+    		// var rowNum = jQuery("#customerList").jqGrid('getGridParam','rowNum');
+    		// var page =  jQuery("#customerList").jqGrid('getGridParam','page') -1;
+    		var userData =  jQuery("#customerList").getGridParam("userData");  		
+    		$.each(userData, function(index,element) {
+    			if(element.id==selRowId){
+    				$scope.customer = element;
+    				$scope.editMode = true;
+    			}
+    		});
+    		
+    		$("#customerModel").modal('show');
+    	} else{ 
+    		 $scope.setError("Please Select Row");
+    	}    	
     }
 
     $scope.removeCustomer = function(id) {
         $scope.resetError();
-
         $http.delete('customer/removeCustomer/' + id).success(function() {
             $scope.fetchcustomersList();
         }).error(function() {
@@ -69,7 +85,9 @@ var CustomerController = function($scope, $http) {
 
     $scope.resetCustomerForm = function() {
         $scope.resetError();
+        $scope.resetModalError();
         $scope.customer = {};
+        $scope.customer.emailId = '';
         $scope.editMode = false;
     }
 
@@ -82,8 +100,17 @@ var CustomerController = function($scope, $http) {
         $scope.error = true;
         $scope.errorMessage = message;
     }
+    
+    $scope.resetModalError = function() {
+        $scope.modalError = false;
+        $scope.modalErrorMessage = '';
+    }
 
-  //  $scope.fetchCustomersList();
-
+    $scope.setModalError = function(message) {
+        $scope.modalError = true;
+        $scope.modalErrorMessage = message;
+    }
+    
+    // $scope.fetchCustomersList();
     $scope.predicate = 'id';
 }
