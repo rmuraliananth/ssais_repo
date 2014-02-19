@@ -2,9 +2,9 @@ package com.po.ssais.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.Set;
-
 
 /**
  * The persistent class for the customer database table.
@@ -15,33 +15,33 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	private String address;
 
-    @Temporal( TemporalType.TIMESTAMP)
-	@Column(name="crt_tsp")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "crt_tsp")
 	private Date crtTsp;
 
-	@Column(name="email_id")
+	@Column(name = "email_id")
 	private String emailId;
 
 	private String name;
 
-	@Column(name="phone_no")
+	@Column(name = "phone_no")
 	private String phoneNo;
 
-    @Temporal( TemporalType.TIMESTAMP)
-	@Column(name="upt_tsp")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "upt_tsp")
 	private Date uptTsp;
 
-	//bi-directional many-to-one association to Account
-	@OneToMany(mappedBy="customer")
+	// bi-directional many-to-one association to Account
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Account> accounts;
 
-    public Customer() {
-    }
+	public Customer() {
+	}
 
 	public int getId() {
 		return this.id;
@@ -106,5 +106,5 @@ public class Customer implements Serializable {
 	public void setAccounts(Set<Account> accounts) {
 		this.accounts = accounts;
 	}
-	
+
 }

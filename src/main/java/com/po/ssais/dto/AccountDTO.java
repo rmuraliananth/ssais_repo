@@ -6,6 +6,12 @@ package com.po.ssais.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.po.ssais.util.json.deserializer.SsaisDateDeserializer;
+import com.po.ssais.util.json.serializer.SsaisDateSerializer;
+
 /**
  * @author Murali
  * 
@@ -20,7 +26,13 @@ public class AccountDTO implements Serializable {
 	private int id;
 	private String accountNo;
 	private Double principalAmount;
+
+	@JsonSerialize(using = SsaisDateSerializer.class)
+	@JsonDeserialize(using = SsaisDateDeserializer.class)
 	private Date openDate;
+
+	@JsonSerialize(using = SsaisDateSerializer.class)
+	@JsonDeserialize(using = SsaisDateDeserializer.class)
 	private Date maturityDate;
 
 	/**

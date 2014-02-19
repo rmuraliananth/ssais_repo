@@ -7,7 +7,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false"%>
 
-<html>
+<html  ng-app="SmallSavingsAgentApp">
 <head>
 <head>
 <title><spring:message code="dashboard.title"></spring:message></title>
@@ -23,6 +23,10 @@
 		<div class="jumbotron">
 				<spring:message code="dashboard.lbl.header" />
 		</div>
+	</div>
+	
+			
+	<div ng-view=''>
 	</div>
 	
 	<!-- Footer -->

@@ -6,16 +6,18 @@ package com.po.ssais.customer.service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.po.ssais.data.jpa.AccountRepository;
 import com.po.ssais.data.jpa.CustomerRepository;
 import com.po.ssais.dto.AccountDTO;
 import com.po.ssais.dto.CustomerDTO;
@@ -34,10 +36,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-	@Autowired
-	private AccountRepository accountRepository;
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<CustomerDTO> fetchCustomers(final JqGridSearchDTO searchDTO) {
 		LOGGER.debug("Fetch Customers");
 		// TODO :: apply filter condition
@@ -53,22 +54,21 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void addCustomer(CustomerDTO customerDTO) {
 		LOGGER.debug("Add Customer");
-		Customer entity = convertCustomerDtoToEntity(customerDTO);
-		entity.setCrtTsp(new Date());
-		entity.setUptTsp(new Date());
-
-		Customer savedCustomer = customerRepository.saveAndFlush(entity);
+		Customer customer = convertCustomerDtoToEntity(customerDTO);
+		customer.setCrtTsp(new Date());
+		customer.setUptTsp(new Date());
 
 		Account account = convertAccountDtoToEntity(customerDTO);
 		if (account != null) {
-			account.setCustomer(savedCustomer);
-			account.setCrtTsp(entity.getCrtTsp());
-			account.setUptTsp(entity.getUptTsp());
-			// Set<Account> accounts = new LinkedHashSet<Account>();
-			// accounts.add(account);
-			accountRepository.save(account);
-
+			account.setCustomer(customer);
+			account.setCrtTsp(customer.getCrtTsp());
+			account.setUptTsp(customer.getUptTsp());
+			Set<Account> accounts = new HashSet<Account>();
+			accounts.add(account);
+			customer.setAccounts(accounts);
 		}
+
+		Customer savedCustomer = customerRepository.save(customer);
 
 		// if (entity.getAccounts() != null & !entity.getAccounts().isEmpty()) {
 		// Iterator<Account> element = entity.getAccounts().iterator();
@@ -85,9 +85,18 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void updateCustomer(CustomerDTO customerDTO) {
 		LOGGER.debug("Update Customer");
-		Customer entity = convertCustomerDtoToEntity(customerDTO);
-		entity.setUptTsp(new Date());
-		customerRepository.saveAndFlush(entity);
+		Customer customer = convertCustomerDtoToEntity(customerDTO);
+		customer.setUptTsp(new Date());
+
+		Account account = convertAccountDtoToEntity(customerDTO);
+		if (account != null) {
+			account.setCustomer(customer);
+			account.setUptTsp(customer.getUptTsp());
+			Set<Account> accounts = new HashSet<Account>();
+			accounts.add(account);
+			customer.setAccounts(accounts);
+		}
+		customerRepository.save(customer);
 
 	}
 
@@ -109,19 +118,33 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerList;
 	}
 
-	private CustomerDTO convertEntityToDTO(Customer entity) {
+	private CustomerDTO convertEntityToDTO(Customer customer) {
 		LOGGER.debug("Convert customer entity to dto");
 		CustomerDTO dto = new CustomerDTO();
-		dto.setId(entity.getId());
-		dto.setName(entity.getName());
-		dto.setEmailId(entity.getEmailId());
-		dto.setPhoneNo(entity.getPhoneNo());
-		dto.setAddress(entity.getAddress());
-		dto.setCrtTsp(entity.getCrtTsp());
-		dto.setUptTsp(entity.getUptTsp());
+		dto.setId(customer.getId());
+		dto.setName(customer.getName());
+		dto.setEmailId(customer.getEmailId());
+		dto.setPhoneNo(customer.getPhoneNo());
+		dto.setAddress(customer.getAddress());
+		dto.setCrtTsp(customer.getCrtTsp());
+		dto.setUptTsp(customer.getUptTsp());
 
-		if (entity.getAccounts() != null && !entity.getAccounts().isEmpty()) {
-			Iterator<Account> element = entity.getAccounts().iterator();
+		// List<Account> accounts = accountRepository.findByCustomer(customer);
+		// for (Account account : accounts) {
+		// AccountDTO accountDTO = new AccountDTO();
+		// accountDTO.setId(account.getId());
+		// accountDTO.setAccountNo(account.getAccountNo());
+		// accountDTO.setOpenDate(account.getOpenDate());
+		// accountDTO.setMaturityDate(account.getMaturityDate());
+		// if (account.getPrincipalAmount() != null) {
+		// accountDTO.setPrincipalAmount(account.getPrincipalAmount()
+		// .doubleValue());
+		// }
+		// dto.setAccount(accountDTO);
+		// }
+
+		if (customer.getAccounts() != null && !customer.getAccounts().isEmpty()) {
+			Iterator<Account> element = customer.getAccounts().iterator();
 			while (element.hasNext()) {
 				Account account = element.next();
 				AccountDTO accountDTO = new AccountDTO();
@@ -142,16 +165,16 @@ public class CustomerServiceImpl implements CustomerService {
 
 	private Customer convertCustomerDtoToEntity(CustomerDTO customerDTO) {
 		LOGGER.debug("Convert customer dto to entity");
-		Customer entity = new Customer();
-		entity.setId(customerDTO.getId());
-		entity.setName(customerDTO.getName());
-		entity.setEmailId(customerDTO.getEmailId());
-		entity.setPhoneNo(customerDTO.getPhoneNo());
-		entity.setAddress(customerDTO.getAddress());
-		entity.setCrtTsp(customerDTO.getCrtTsp());
-		entity.setUptTsp(customerDTO.getUptTsp());
+		Customer customer = new Customer();
+		customer.setId(customerDTO.getId());
+		customer.setName(customerDTO.getName());
+		customer.setEmailId(customerDTO.getEmailId());
+		customer.setPhoneNo(customerDTO.getPhoneNo());
+		customer.setAddress(customerDTO.getAddress());
+		customer.setCrtTsp(customerDTO.getCrtTsp());
+		customer.setUptTsp(customerDTO.getUptTsp());
 
-		return entity;
+		return customer;
 	}
 
 	private Account convertAccountDtoToEntity(CustomerDTO customerDTO) {
@@ -159,18 +182,22 @@ public class CustomerServiceImpl implements CustomerService {
 		Account account = null;
 		if (customerDTO.getAccount() != null) {
 			account = new Account();
+			account.setId(customerDTO.getAccount().getId());
 			account.setAccountNo(customerDTO.getAccount().getAccountNo());
 			account.setName(customerDTO.getName());
 			account.setOpenDate(customerDTO.getAccount().getOpenDate());
 			account.setMaturityDate(customerDTO.getAccount().getMaturityDate());
 			account.setPrincipalAmount(new BigDecimal(customerDTO.getAccount()
 					.getPrincipalAmount()));
-			// TODO ::
-			account.setBalanceAmount(new BigDecimal(customerDTO.getAccount()
-					.getPrincipalAmount()));
+
+			// TODO :: implement balance amount check , last paid date & ROI
+
+			account.setBalanceAmount(account.getPrincipalAmount());
+			account.setLastPaidDate(customerDTO.getAccount().getOpenDate());
+
 			account.setRateOfInterest(new BigDecimal(9.75d));
 			account.setAccountType("NEW");
-			account.setLastPaidDate(new Date());
+
 			account.setCrtTsp(customerDTO.getCrtTsp());
 			account.setUptTsp(customerDTO.getUptTsp());
 		}

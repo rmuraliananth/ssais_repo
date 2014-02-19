@@ -1,8 +1,9 @@
 body {
-	font-size: 62.5%;
-	font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+	font-size: 100%;
+/*	font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";*/
 }
 
+/*
 table {
 	font-size: 1em;
 }
@@ -21,3 +22,4 @@ table {
 fieldset{
 	border-radius:8px;
 }
+*/

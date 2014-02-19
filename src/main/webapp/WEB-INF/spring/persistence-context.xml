@@ -12,7 +12,7 @@
 	<!-- post-processors for all standard config annotations -->
 
 	<context:annotation-config />
-	<jpa:repositories base-package="com.po.ssais" />
+
 
 	<!-- <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/> -->
 
@@ -30,5 +30,6 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven />
+	<jpa:repositories base-package="com.po.ssais.data.jpa" />
 </beans>

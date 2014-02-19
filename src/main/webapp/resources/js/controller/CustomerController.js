@@ -10,21 +10,20 @@ var CustomerController = function($scope, $http) {
     $scope.editMode = false;
 
     $scope.fetchCustomersList = function() {
-    	 $scope.resetError();
+    	$scope.resetError();
     	$("#customerList").trigger("reloadGrid");		  
     }
     
     $scope.save = function(customer) {
         if(customer.$valid) {
-            //Traitement ici...
             console.log("valid");
-            console.log(user);
+            console.log(customer);
         }
     };
 
     $scope.addNewCustomer = function(customer) {
         $scope.resetCustomerForm();        
-        $http.post('addCustomer', customer).success(function() {
+        $http.post('../addCustomer', customer).success(function() {
             $scope.fetchCustomersList();
             $("#customerModel").modal('hide');
         }).error(function() {
@@ -65,7 +64,7 @@ var CustomerController = function($scope, $http) {
 
     $scope.removeCustomer = function(id) {
         $scope.resetError();
-        $http.delete('customer/removeCustomer/' + id).success(function() {
+        $http['delete']('customer/removeCustomer/' + id).success(function() {
             $scope.fetchcustomersList();
         }).error(function() {
             $scope.setError('Could not remove customer');
@@ -75,7 +74,7 @@ var CustomerController = function($scope, $http) {
     $scope.removeAllcustomers = function() {
         $scope.resetError();
 
-        $http.delete('customer/removeAllcustomers').success(function() {
+        $http['delete']('customer/removeAllcustomers').success(function() {
             $scope.fetchcustomersList();
         }).error(function() {
             $scope.setError('Could not remove all customers');
@@ -111,6 +110,7 @@ var CustomerController = function($scope, $http) {
         $scope.modalErrorMessage = message;
     }
     
+    console.log("Customer controller loaded.....");
     // $scope.fetchCustomersList();
     $scope.predicate = 'id';
 }

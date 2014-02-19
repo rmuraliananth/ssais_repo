@@ -1,4 +1,4 @@
-package com.po.ssais.customer.web.controller;
+package com.po.ssais.agent.web.controller;
 
 import java.util.List;
 
@@ -22,10 +22,10 @@ import com.po.ssais.dto.jqgrid.JqGridTableDTO;
  * 
  */
 @Controller
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/agent")
+public class AgentController {
 	private static final Logger LOGGER = Logger
-			.getLogger(CustomerController.class);
+			.getLogger(AgentController.class);
 
 	@Autowired
 	private CustomerService customerService;
@@ -33,7 +33,7 @@ public class CustomerController {
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ModelAndView loadCustomerPage() {
 		LOGGER.debug("Inside loadCustomerPage() method");
-		ModelAndView modelView = new ModelAndView("customer");
+		ModelAndView modelView = new ModelAndView("agent");
 		return modelView;
 	}
 
