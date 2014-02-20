@@ -20,8 +20,8 @@ html,body {
 }
 
 .text-muted {
-	padding-top: 10px;
 	color: #2D6CA2;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 th.ui-th-column div {
@@ -42,4 +42,8 @@ th.ui-th-column div {
 	margin: 0 auto -40px;
 	/* Pad bottom by footer height */
 	padding: 0 0 60px;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #FFFFFF;
 }

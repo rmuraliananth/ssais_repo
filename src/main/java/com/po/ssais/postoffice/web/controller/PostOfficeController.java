@@ -1,4 +1,4 @@
-package com.po.ssais.agent.web.controller;
+package com.po.ssais.postoffice.web.controller;
 
 import java.util.List;
 
@@ -12,55 +12,55 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.po.ssais.agent.service.AgentService;
-import com.po.ssais.dto.AgentDTO;
+import com.po.ssais.dto.PostOfficeDTO;
 import com.po.ssais.dto.jqgrid.JqGridSearchDTO;
 import com.po.ssais.dto.jqgrid.JqGridTableDTO;
+import com.po.ssais.postoffice.service.PostOfficeService;
 
 /**
  * @author Murali
  * 
  */
 @Controller
-@RequestMapping("/agent")
-public class AgentController {
+@RequestMapping("/postOffice")
+public class PostOfficeController {
 	private static final Logger LOGGER = Logger
-			.getLogger(AgentController.class);
+			.getLogger(PostOfficeController.class);
 
 	@Autowired
-	private AgentService agentService;
+	private PostOfficeService postOfficeService;
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ModelAndView loadAgentPage() {
-		LOGGER.debug("Inside loadAgentPage() method");
-		ModelAndView modelView = new ModelAndView("agent");
+	public ModelAndView loadPostOfficePage() {
+		LOGGER.debug("Inside loadPostOfficePage() method");
+		ModelAndView modelView = new ModelAndView("postoffice");
 		return modelView;
 	}
 
-	@RequestMapping(value = "/addAgent", method = RequestMethod.POST)
+	@RequestMapping(value = "/addPostOffice", method = RequestMethod.POST)
 	public @ResponseBody
-	void addAgent(@RequestBody AgentDTO agent) {
-		LOGGER.info("Add New Agent Details...");
-		agentService.addAgent(agent);
+	void addPostOffice(@RequestBody PostOfficeDTO postOffice) {
+		LOGGER.info("Add New PostOffice Details...");
+		postOfficeService.addPostOffice(postOffice);
 	}
 
-	@RequestMapping(value = "/updateAgent", method = RequestMethod.PUT)
+	@RequestMapping(value = "/updatePostOffice", method = RequestMethod.PUT)
 	public @ResponseBody
-	void updateAgent(@RequestBody AgentDTO agent) {
-		LOGGER.info("Update Agent Details...");
-		agentService.updateAgent(agent);
+	void updatePostOffice(@RequestBody PostOfficeDTO postOffice) {
+		LOGGER.info("Update PostOffice Details...");
+		postOfficeService.updatePostOffice(postOffice);
 	}
 
-	@RequestMapping(value = "/deleteAgent", method = RequestMethod.PUT)
+	@RequestMapping(value = "/deletePostOffice", method = RequestMethod.PUT)
 	public @ResponseBody
-	void deleteAgent(@RequestBody AgentDTO agent) {
-		LOGGER.info("Delete Agent Details...");
-		agentService.deleteAgent(agent);
+	void deletePostOffice(@RequestBody PostOfficeDTO postOffice) {
+		LOGGER.info("Delete PostOffice Details...");
+		postOfficeService.deletePostOffice(postOffice);
 	}
 
 	@RequestMapping("/view")
 	public @ResponseBody
-	JqGridTableDTO<Object> viewAgents(
+	JqGridTableDTO<Object> viewPostOffices(
 			@RequestParam(value = "_search", required = false) boolean _search,
 			@RequestParam(value = "page", required = false) int page,
 			@RequestParam(value = "rows", required = false) int rows,
@@ -69,10 +69,11 @@ public class AgentController {
 			@RequestParam(value = "searchString", required = false) String searchString,
 			@RequestParam(value = "sord", required = false) String sord) {
 
-		LOGGER.info("Fetch Agent Details...");
+		LOGGER.info("Fetch PostOffice Details...");
 		JqGridSearchDTO searchDTO = new JqGridSearchDTO(_search, page, rows,
 				searchField, searchOper, searchString, sord);
-		List<AgentDTO> rowList = agentService.fetchAgents(searchDTO);
+		List<PostOfficeDTO> rowList = postOfficeService
+				.fetchPostOffices(searchDTO);
 
 		JqGridTableDTO table = new JqGridTableDTO();
 		double totalPages = 0;

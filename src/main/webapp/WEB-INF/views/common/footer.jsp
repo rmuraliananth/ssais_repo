@@ -2,7 +2,8 @@
 
 <div id="footer">
 	<div class="container">
-		<p class="text-muted" align="center">
+		<p></p>
+		<p class="text-muted ui-widget ui-helper-reset" align="center">		
 			<spring:message code="ssais.footer" />
 		</p>
 	</div>

@@ -3,7 +3,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header ui-widget ui-helper-reset">
-			<div class="navbar-brand" style="color: white;">
+			<div class="navbar-brand">
 				<spring:message code="ssais.header" />				
 			</div>
 		</div>	
