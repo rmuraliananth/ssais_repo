@@ -24,19 +24,19 @@ angular.module('SmallSavingsAgentApp').config(
 
 			$stateProvider.state('dashboard', {
 				url : '',
-				controller : 'CustomerController',
-				templateUrl : '../customer/pageNew'
+				controller : 'DashboardController',
+				templateUrl : '../dashboard/home'
+			}), $stateProvider.state('home', {
+				url : '/home',
+				controller : 'DashboardController',
+				templateUrl : '../dashboard/home'
 			}), $stateProvider.state('customer', {
 				url : '/customer',
 				controller : 'CustomerController',
-				templateUrl : '../customer/pageNew'
+				templateUrl : '../customer/page'
 			}), $stateProvider.state('agent', {
 				url : '/agent',
 				controller : 'AgentController',
 				templateUrl : '../agent/page'
-			}), $stateProvider.state('subpage', {
-				url : '/subpage',
-				controller : 'subpageController',
-				templateUrl : 'app/subpage.jsp'
 			});
 		});

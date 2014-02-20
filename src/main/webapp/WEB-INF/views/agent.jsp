@@ -21,7 +21,7 @@
 				<spring:message code="agent.btn.edit" />
 			</button>
 
-			<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="agent.btn.delete" />" name="Delete">
+			<input type="reset" class="btn btn-sm btn-primary"   ng-disabled="true" value="<spring:message code="agent.btn.delete" />" name="Delete">
 			
 			<button class="btn btn-sm btn-primary"  ng-click="fetchAgentsList()">
 				<spring:message code="agent.btn.refresh" />
@@ -127,7 +127,7 @@
 		} ];
 
 		$("#agentList").jqGrid({
-			//url : 'view?q=2',
+			url : '../agent/view?q=2',
 			datatype : 'json',
 			colNames : colNames,
 			colModel : colModel,

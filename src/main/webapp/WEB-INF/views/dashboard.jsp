@@ -17,18 +17,8 @@
 <body>
 	<!-- Header -->
 	<jsp:include page="common/header.jsp"></jsp:include>
-		
-	<!-- Container -->
-	<div class="container theme-showcase" role="main">
-		<div class="jumbotron">
-				<spring:message code="dashboard.lbl.header" />
-		</div>
-	</div>
-	
-			
-	<div ng-view=''>
-	</div>
-	
+	<!-- Content -->
+	<div ng-view=''></div>	
 	<!-- Footer -->
 	<jsp:include page="common/footer.jsp"></jsp:include>
 </body>

@@ -23,7 +23,7 @@
 				<spring:message code="customer.btn.edit" />
 			</button>
 
-			<input type="reset" class="btn btn-sm btn-primary" value="<spring:message code="customer.btn.delete" />" name="Delete">
+			<input type="reset" class="btn btn-sm btn-primary"  ng-disabled="true" value="<spring:message code="customer.btn.delete" />" name="Delete">
 			
 			<button class="btn btn-sm btn-primary"  ng-click="fetchCustomersList()">
 				<spring:message code="customer.btn.refresh" />
@@ -132,6 +132,12 @@
 								</div>
 								<div class="col-sm-4">
 									<input id="openDate" type="text" class="form-control" name="openDate" ng-model="customer.account.openDate" placeholder="Open Date" ng-required="true">
+									
+								</div>
+								<div class="col-sm-1">
+									<button  type="button" class="btn btn-sm btn-default" onclick="showDate('#openDate')">
+									 	<span class="glyphicon glyphicon-calendar"></span>
+									</button>
 								</div>
 							</div>	
 							<p></p>
@@ -140,7 +146,12 @@
 									<spring:message code="customer.account.lbl.maturity_date"/>
 								</div>
 								<div class="col-sm-4">
-									<input id="maturityDate" type="text" class="form-control datepicker" name="maturityDate" ng-model="customer.account.maturityDate"  placeholder="Maturity Date" ng-required="true">
+									<input  id="maturityDate" type="text" class="form-control datepicker" name="maturityDate" ng-model="customer.account.maturityDate"  placeholder="Maturity Date" ng-required="true">
+								</div>
+								<div class="col-sm-1">
+									<button type="button" class="btn btn-sm btn-default" onclick="showDate('#maturityDate')">
+									 	<span class="glyphicon glyphicon-calendar"></span>
+									</button>
 								</div>
 							</div>	
 					 	</div>
@@ -236,7 +247,7 @@
 		];
 
 		$("#customerList").jqGrid({
-			url : 'view?q=2',
+			url : '../customer/view?q=2',
 			datatype : 'json',
 			colNames : colNames,
 			colModel : colModel,
@@ -260,13 +271,17 @@
 			search : false
 		});
 
-		$(".openDate").datepicker({
-			dateFormat : 'dd-mm-yy'
+		$("#openDate").datepicker({
+			 dateFormat : 'dd-mm-yy'
 		});
 
-		$(".maturityDate").datepicker({
+		$("#maturityDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
+		
+		showDate = function(id){
+			$(id).datepicker("show");
+		};
 
 	});
 </script>

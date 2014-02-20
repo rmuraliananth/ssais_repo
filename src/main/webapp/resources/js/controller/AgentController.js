@@ -23,7 +23,7 @@ var AgentController = function($scope, $http) {
 
     $scope.addNewAgent = function(agent) {
         $scope.resetAgentForm();        
-        $http.post('addAgent', agent).success(function() {
+        $http.post('../agent/addAgent', agent).success(function() {
             $scope.fetchAgentsList();
             $("#agentModel").modal('hide');
         }).error(function() {
@@ -33,7 +33,7 @@ var AgentController = function($scope, $http) {
 
     $scope.updateAgent = function(agent) {    	 
     	$scope.editMode = true;
-        $http.put('updateAgent', agent).success(function() {
+        $http.put('../agent/updateAgent', agent).success(function() {
         	$scope.fetchAgentsList();
             $("#agentModel").modal('hide');
             $scope.resetAgentForm();      

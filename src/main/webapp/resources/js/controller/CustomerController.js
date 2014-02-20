@@ -23,7 +23,7 @@ var CustomerController = function($scope, $http) {
 
     $scope.addNewCustomer = function(customer) {
         $scope.resetCustomerForm();        
-        $http.post('../addCustomer', customer).success(function() {
+        $http.post('../customer/addCustomer', customer).success(function() {
             $scope.fetchCustomersList();
             $("#customerModel").modal('hide');
         }).error(function() {
@@ -33,7 +33,7 @@ var CustomerController = function($scope, $http) {
 
     $scope.updateCustomer = function(customer) {    	 
     	$scope.editMode = true;
-        $http.put('updateCustomer', customer).success(function() {
+        $http.put('../customer/updateCustomer', customer).success(function() {
         	$scope.fetchCustomersList();
             $("#customerModel").modal('hide');
             $scope.resetCustomerForm();      
