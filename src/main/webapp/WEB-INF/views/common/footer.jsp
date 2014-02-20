@@ -1,9 +1,11 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div id="footer">
-	<p class="text-muted">
-		<spring:message code="ssais.footer" />
-	</p>
+	<div class="container">
+		<p class="text-muted" align="center">
+			<spring:message code="ssais.footer" />
+		</p>
+	</div>
 </div>
 
 

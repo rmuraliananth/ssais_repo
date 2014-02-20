@@ -15,10 +15,14 @@
 <jsp:include page="common/include.jsp"></jsp:include>
 </head>
 <body>
-	<!-- Header -->
-	<jsp:include page="common/header.jsp"></jsp:include>
-	<!-- Content -->
-	<div ng-view=''></div>	
+	 <!-- Wrap all page content here -->
+    <div id="wrap">
+		<!-- Header -->
+		<jsp:include page="common/header.jsp"></jsp:include>
+		
+		<!-- Content -->
+		<div ng-view=''></div>
+	</div>	
 	<!-- Footer -->
 	<jsp:include page="common/footer.jsp"></jsp:include>
 </body>
