@@ -45,10 +45,10 @@ public class CustomerServiceImpl implements CustomerService {
 		int page = (searchDTO.getPage() == 0 ? 0 : searchDTO.getPage() - 1);
 		final PageRequest pageRequest = new PageRequest(page,
 				searchDTO.getRows());
-		Page<Customer> cu = customerRepository.findAll(pageRequest);
-		searchDTO.setTotal(cu.getTotalElements());
-		List<Customer> customerEntities = cu.getContent();
-		return convertToDTOs(customerEntities);
+		Page<Customer> results = customerRepository.findAll(pageRequest);
+		searchDTO.setTotal(results.getTotalElements());
+		List<Customer> customers = results.getContent();
+		return convertToDTOs(customers);
 	}
 
 	@Override

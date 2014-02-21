@@ -146,7 +146,7 @@
 									<spring:message code="customer.account.lbl.maturity_date"/>
 								</div>
 								<div class="col-sm-4">
-									<input  id="maturityDate" type="text" class="form-control datepicker" name="maturityDate" ng-model="customer.account.maturityDate"  placeholder="Maturity Date" ng-required="true">
+									<input  id="maturityDate" type="text" class="form-control" name="maturityDate" ng-model="customer.account.maturityDate"  placeholder="Maturity Date" ng-required="true">
 								</div>
 								<div class="col-sm-1">
 									<button type="button" class="btn btn-sm btn-default" onclick="showDate('#maturityDate')">
@@ -260,7 +260,6 @@
 			autowidth : true,
 			rownumbers : true,
 			height : "100%",
-			editurl : "server.php",
 			caption : '<spring:message code="customer.lbl.header"/>'
 		});
 
@@ -278,10 +277,5 @@
 		$("#maturityDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		
-		showDate = function(id){
-			$(id).datepicker("show");
-		};
-
 	});
 </script>

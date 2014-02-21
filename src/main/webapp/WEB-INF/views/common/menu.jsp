@@ -17,6 +17,11 @@
 				<spring:message	code="menu.lbl.agent" />
 			</a>
 		</li>
+		<li ng-class="{ active: isActive('/postoffice')}">
+			<a href="<spring:url value="#/postoffice"></spring:url>"> 
+				<spring:message	code="menu.lbl.postoffice" />
+			</a>
+		</li>
 		<li>
 			<a href="<spring:url value="/logout"></spring:url>">
 			<spring:message	code="menu.lbl.logout" />

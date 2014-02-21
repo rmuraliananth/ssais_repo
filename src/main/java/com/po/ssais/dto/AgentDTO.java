@@ -6,6 +6,12 @@ package com.po.ssais.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.po.ssais.util.json.deserializer.SsaisDateDeserializer;
+import com.po.ssais.util.json.serializer.SsaisDateSerializer;
+
 /**
  * @author Murali
  * 
@@ -19,12 +25,19 @@ public class AgentDTO implements Serializable {
 
 	private int id;
 	private String name;
-	private String emailId;
-	private String phoneNo;
+	private String registerationNo;
+
+	@JsonSerialize(using = SsaisDateSerializer.class)
+	@JsonDeserialize(using = SsaisDateDeserializer.class)
+	private Date registerDate;
+
+	@JsonSerialize(using = SsaisDateSerializer.class)
+	@JsonDeserialize(using = SsaisDateDeserializer.class)
+	private Date expiredDate;
 	private String address;
+
 	private Date crtTsp;
 	private Date uptTsp;
-
 
 	/**
 	 * @return the id
@@ -57,33 +70,48 @@ public class AgentDTO implements Serializable {
 	}
 
 	/**
-	 * @return the emailId
+	 * @return the registerationNo
 	 */
-	public String getEmailId() {
-		return emailId;
+	public String getRegisterationNo() {
+		return registerationNo;
 	}
 
 	/**
-	 * @param emailId
-	 *            the emailId to set
+	 * @param registerationNo
+	 *            the registerationNo to set
 	 */
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setRegisterationNo(String registerationNo) {
+		this.registerationNo = registerationNo;
 	}
 
 	/**
-	 * @return the phoneNo
+	 * @return the registerDate
 	 */
-	public String getPhoneNo() {
-		return phoneNo;
+	public Date getRegisterDate() {
+		return registerDate;
 	}
 
 	/**
-	 * @param phoneNo
-	 *            the phoneNo to set
+	 * @param registerDate
+	 *            the registerDate to set
 	 */
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	/**
+	 * @return the expiredDate
+	 */
+	public Date getExpiredDate() {
+		return expiredDate;
+	}
+
+	/**
+	 * @param expiredDate
+	 *            the expiredDate to set
+	 */
+	public void setExpiredDate(Date expiredDate) {
+		this.expiredDate = expiredDate;
 	}
 
 	/**

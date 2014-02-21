@@ -6,12 +6,6 @@ package com.po.ssais.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
-import com.po.ssais.util.json.deserializer.SsaisDateDeserializer;
-import com.po.ssais.util.json.serializer.SsaisDateSerializer;
-
 /**
  * @author Murali
  * 
@@ -24,16 +18,11 @@ public class PostOfficeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-	private String accountNo;
-	private Double principalAmount;
-
-	@JsonSerialize(using = SsaisDateSerializer.class)
-	@JsonDeserialize(using = SsaisDateDeserializer.class)
-	private Date openDate;
-
-	@JsonSerialize(using = SsaisDateSerializer.class)
-	@JsonDeserialize(using = SsaisDateDeserializer.class)
-	private Date maturityDate;
+	private String name;
+	private String branch;
+	private String address;
+	private Date crtTsp;
+	private Date uptTsp;
 
 	/**
 	 * @return the id
@@ -51,63 +40,78 @@ public class PostOfficeDTO implements Serializable {
 	}
 
 	/**
-	 * @return the accountNo
+	 * @return the name
 	 */
-	public String getAccountNo() {
-		return accountNo;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param accountNo
-	 *            the accountNo to set
+	 * @param name
+	 *            the name to set
 	 */
-	public void setAccountNo(String accountNo) {
-		this.accountNo = accountNo;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * @return the principalAmount
+	 * @return the branch
 	 */
-	public Double getPrincipalAmount() {
-		return principalAmount;
+	public String getBranch() {
+		return branch;
 	}
 
 	/**
-	 * @param principalAmount
-	 *            the principalAmount to set
+	 * @param branch
+	 *            the branch to set
 	 */
-	public void setPrincipalAmount(Double principalAmount) {
-		this.principalAmount = principalAmount;
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 
 	/**
-	 * @return the openDate
+	 * @return the address
 	 */
-	public Date getOpenDate() {
-		return openDate;
+	public String getAddress() {
+		return address;
 	}
 
 	/**
-	 * @param openDate
-	 *            the openDate to set
+	 * @param address
+	 *            the address to set
 	 */
-	public void setOpenDate(Date openDate) {
-		this.openDate = openDate;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	/**
-	 * @return the maturityDate
+	 * @return the crtTsp
 	 */
-	public Date getMaturityDate() {
-		return maturityDate;
+	public Date getCrtTsp() {
+		return crtTsp;
 	}
 
 	/**
-	 * @param maturityDate
-	 *            the maturityDate to set
+	 * @param crtTsp
+	 *            the crtTsp to set
 	 */
-	public void setMaturityDate(Date maturityDate) {
-		this.maturityDate = maturityDate;
+	public void setCrtTsp(Date crtTsp) {
+		this.crtTsp = crtTsp;
+	}
+
+	/**
+	 * @return the uptTsp
+	 */
+	public Date getUptTsp() {
+		return uptTsp;
+	}
+
+	/**
+	 * @param uptTsp
+	 *            the uptTsp to set
+	 */
+	public void setUptTsp(Date uptTsp) {
+		this.uptTsp = uptTsp;
 	}
 
 }

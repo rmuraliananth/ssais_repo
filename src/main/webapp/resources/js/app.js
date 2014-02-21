@@ -38,5 +38,9 @@ angular.module('SmallSavingsAgentApp').config(
 				url : '/agent',
 				controller : 'AgentController',
 				templateUrl : '../agent/page'
+			}), $stateProvider.state('postoffice', {
+				url : '/postoffice',
+				controller : 'PostOfficeController',
+				templateUrl : '../postoffice/page'
 			});
 		});

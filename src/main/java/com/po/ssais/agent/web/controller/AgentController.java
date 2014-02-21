@@ -51,7 +51,7 @@ public class AgentController {
 		agentService.updateAgent(agent);
 	}
 
-	@RequestMapping(value = "/deleteAgent", method = RequestMethod.PUT)
+	@RequestMapping(value = "/deleteAgent", method = RequestMethod.DELETE)
 	public @ResponseBody
 	void deleteAgent(@RequestBody AgentDTO agent) {
 		LOGGER.info("Delete Agent Details...");
@@ -60,7 +60,7 @@ public class AgentController {
 
 	@RequestMapping("/view")
 	public @ResponseBody
-	JqGridTableDTO<Object> viewAgents(
+	JqGridTableDTO<AgentDTO> viewAgents(
 			@RequestParam(value = "_search", required = false) boolean _search,
 			@RequestParam(value = "page", required = false) int page,
 			@RequestParam(value = "rows", required = false) int rows,
@@ -74,7 +74,9 @@ public class AgentController {
 				searchField, searchOper, searchString, sord);
 		List<AgentDTO> rowList = agentService.fetchAgents(searchDTO);
 
-		JqGridTableDTO table = new JqGridTableDTO();
+		JqGridTableDTO<AgentDTO> table = new JqGridTableDTO<AgentDTO>();
+
+		// TODO :: Fix below calculation and moved to separate method
 		double totalPages = 0;
 		double pages = page;
 		double limit = rows;
@@ -85,11 +87,14 @@ public class AgentController {
 		if (pages > totalPages) {
 			pages = totalPages;
 		}
+
 		table.setPage(String.valueOf(pages));
 		table.setTotal(String.valueOf(totalPages));
 		table.setRecords(String.valueOf(searchDTO.getTotal()));
+
 		table.setRows(rowList);
 		table.setUserdata(rowList);
+
 		return table;
 	}
 

@@ -22,7 +22,7 @@ import com.po.ssais.postoffice.service.PostOfficeService;
  * 
  */
 @Controller
-@RequestMapping("/postOffice")
+@RequestMapping("/postoffice")
 public class PostOfficeController {
 	private static final Logger LOGGER = Logger
 			.getLogger(PostOfficeController.class);
@@ -51,7 +51,7 @@ public class PostOfficeController {
 		postOfficeService.updatePostOffice(postOffice);
 	}
 
-	@RequestMapping(value = "/deletePostOffice", method = RequestMethod.PUT)
+	@RequestMapping(value = "/deletePostOffice", method = RequestMethod.DELETE)
 	public @ResponseBody
 	void deletePostOffice(@RequestBody PostOfficeDTO postOffice) {
 		LOGGER.info("Delete PostOffice Details...");
@@ -60,7 +60,7 @@ public class PostOfficeController {
 
 	@RequestMapping("/view")
 	public @ResponseBody
-	JqGridTableDTO<Object> viewPostOffices(
+	JqGridTableDTO<PostOfficeDTO> viewPostOffices(
 			@RequestParam(value = "_search", required = false) boolean _search,
 			@RequestParam(value = "page", required = false) int page,
 			@RequestParam(value = "rows", required = false) int rows,
@@ -75,7 +75,7 @@ public class PostOfficeController {
 		List<PostOfficeDTO> rowList = postOfficeService
 				.fetchPostOffices(searchDTO);
 
-		JqGridTableDTO table = new JqGridTableDTO();
+		JqGridTableDTO<PostOfficeDTO> table = new JqGridTableDTO<PostOfficeDTO>();
 		double totalPages = 0;
 		double pages = page;
 		double limit = rows;

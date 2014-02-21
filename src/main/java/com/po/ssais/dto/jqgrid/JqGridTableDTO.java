@@ -19,11 +19,7 @@ public class JqGridTableDTO<T> implements Serializable {
 	private String total;
 	private String records;
 	private List<T> rows;
-	private T userdata;
-
-	protected void populatePageFooter() {
-
-	}
+	private List<T> userdata;
 
 	/**
 	 * @return the page
@@ -88,7 +84,7 @@ public class JqGridTableDTO<T> implements Serializable {
 	/**
 	 * @return the userdata
 	 */
-	public T getUserdata() {
+	public List<T> getUserdata() {
 		return userdata;
 	}
 
@@ -96,8 +92,15 @@ public class JqGridTableDTO<T> implements Serializable {
 	 * @param userdata
 	 *            the userdata to set
 	 */
-	public void setUserdata(T userdata) {
+	public void setUserdata(List<T> userdata) {
 		this.userdata = userdata;
+	}
+
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

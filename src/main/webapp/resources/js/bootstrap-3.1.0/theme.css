@@ -47,3 +47,7 @@ th.ui-th-column div {
 .navbar-inverse .navbar-brand {
 	color: #FFFFFF;
 }
+
+#ui-datepicker-div {
+	font-size: 0.9em;
+}

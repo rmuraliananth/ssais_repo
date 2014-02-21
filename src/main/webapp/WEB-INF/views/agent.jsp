@@ -70,15 +70,57 @@
 									<spring:message code="agent.lbl.name"/>
 								</div>
 								<div class="col-sm-4">
-									<input type="hidden" class="form-control" name="agent.id" id="id">
-									<input type="hidden" class="form-control" name="agent.account.id">
+									<input type="hidden" class="form-control" name="id" ng-model="agent.id"  id="id">									
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 									<input type="text" class="form-control" name="name" ng-model="agent.name" placeholder="Agent Name" required autofocus min="2">
 								</div>
 							</div>
 							<p></p>
-							
-							
+							<div class="row">
+								<div class="col-sm-6">
+									<spring:message code="agent.lbl.registration_no"/>
+								</div>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" name="registerationNo" ng-model="agent.registerationNo" placeholder="Registration No" required>
+								</div>
+							</div>
+							<p></p>
+							<div class="row">
+								<div class="col-sm-6">
+									<spring:message code="agent.lbl.registration_date"/>
+								</div>
+								<div class="col-sm-4">
+									<input type="text" id="registerDate" class="form-control" name="registerDate" ng-model="agent.registerDate" placeholder="Registration Date" ng-required="true">
+								</div>
+								<div class="col-sm-1">
+									<button type="button" class="btn btn-sm btn-default" onclick="showDate('#registerDate')">
+									 	<span class="glyphicon glyphicon-calendar"></span>
+									</button>
+								</div>
+							</div>
+							<p></p>
+							<div class="row">
+								<div class="col-sm-6">
+									<spring:message code="agent.lbl.expired_date"/>
+								</div>
+								<div class="col-sm-4">
+									<input  id="expiredDate" type="text" class="form-control" name="expiredDate" ng-model="agent.expiredDate"  placeholder="Expired Date" ng-required="true">
+								</div>
+								<div class="col-sm-1">
+									<button type="button" class="btn btn-sm btn-default" onclick="showDate('#expiredDate')">
+									 	<span class="glyphicon glyphicon-calendar"></span>
+									</button>
+								</div>
+							</div>
+							<p></p>
+							<div class="row">
+								<div class="col-sm-6">
+									<spring:message code="agent.lbl.address"/>
+								</div>
+								<div class="col-sm-6">
+									<textarea rows="3" cols="18" class="form-control" name="address"  ng-model="agent.address" placeholder="Address"></textarea>										
+								</div>
+							</div>							
 					 	</div>
 					 </div>
 				</div>
@@ -111,7 +153,11 @@
 	$(function() {
 
 		var colNames = [ '<spring:message code="agent.lbl.id"/>',
-				'<spring:message code="agent.lbl.name"/>' ];
+				'<spring:message code="agent.lbl.name"/>',
+				'<spring:message code="agent.lbl.registration_no"/>',
+				'<spring:message code="agent.lbl.registration_date"/>',
+				'<spring:message code="agent.lbl.expired_date"/>',
+				'<spring:message code="agent.lbl.address"/>' ];
 
 		var colModel = [ {
 			name : 'id',
@@ -122,6 +168,26 @@
 		}, {
 			name : 'name',
 			index : 'agent_name',
+			align : "left",
+			width : 150
+		}, {
+			name : 'registerationNo',
+			index : 'registration_no',
+			align : "center",
+			width : 120
+		}, {
+			name : 'registerDate',
+			index : 'registration_date',
+			align : "center",
+			width : 120
+		}, {
+			name : 'expiredDate',
+			index : 'expired_date',
+			align : "center",
+			width : 120
+		}, {
+			name : 'address',
+			index : 'address',
 			align : "left",
 			width : 150
 		} ];
@@ -140,7 +206,6 @@
 			autowidth : true,
 			rownumbers : true,
 			height : "100%",
-			editurl : "server.php",
 			caption : '<spring:message code="agent.lbl.header"/>'
 		});
 
@@ -149,6 +214,14 @@
 			add : false,
 			del : false,
 			search : false
+		});
+
+		$("#registerDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+
+		$("#expiredDate").datepicker({
+			dateFormat : 'dd-mm-yy'
 		});
 
 	});

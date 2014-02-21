@@ -3,7 +3,7 @@
 <div id="footer">
 	<div class="container">
 		<p></p>
-		<p class="text-muted ui-widget ui-helper-reset" align="center">		
+		<p style="font-size: 0.9em;" class="ui-widget ui-helper-reset text-muted" align="center">		
 			<spring:message code="ssais.footer" />
 		</p>
 	</div>
@@ -24,6 +24,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/controller/DashboardController.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/controller/CustomerController.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/controller/AgentController.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/controller/PostOfficeController.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/services.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/filters.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/directives.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ssais-common.js"></script>
