@@ -90,12 +90,10 @@
 									<spring:message code="agent.lbl.registration_date"/>
 								</div>
 								<div class="col-sm-4">
-									<input type="text" id="registerDate" class="form-control" name="registerDate" ng-model="agent.registerDate" placeholder="Registration Date" ng-required="true">
-								</div>
-								<div class="col-sm-1">
-									<button type="button" class="btn btn-sm btn-default" onclick="showDate('#registerDate')">
-									 	<span class="glyphicon glyphicon-calendar"></span>
-									</button>
+									<div class="input-group">
+										<input type="text" id="registerDate" class="form-control" name="registerDate" ng-model="agent.registerDate" placeholder="Registration Date" ng-required="true">
+                    					<span class="input-group-addon"  onclick="showDate('#registerDate')"><span class="glyphicon glyphicon-calendar"></span></span>
+               					 	</div>
 								</div>
 							</div>
 							<p></p>
@@ -104,13 +102,11 @@
 									<spring:message code="agent.lbl.expired_date"/>
 								</div>
 								<div class="col-sm-4">
-									<input  id="expiredDate" type="text" class="form-control" name="expiredDate" ng-model="agent.expiredDate"  placeholder="Expired Date" ng-required="true">
-								</div>
-								<div class="col-sm-1">
-									<button type="button" class="btn btn-sm btn-default" onclick="showDate('#expiredDate')">
-									 	<span class="glyphicon glyphicon-calendar"></span>
-									</button>
-								</div>
+									<div class="input-group">
+										<input  id="expiredDate" type="text" class="form-control" name="expiredDate" ng-model="agent.expiredDate"  placeholder="Expired Date" ng-required="true">
+                    					<span class="input-group-addon"  onclick="showDate('#expiredDate')"><span class="glyphicon glyphicon-calendar"></span></span>
+               					 	</div>
+								</div>								
 							</div>
 							<p></p>
 							<div class="row">

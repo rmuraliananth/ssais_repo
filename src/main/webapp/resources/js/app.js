@@ -42,5 +42,9 @@ angular.module('SmallSavingsAgentApp').config(
 				url : '/postoffice',
 				controller : 'PostOfficeController',
 				templateUrl : '../postoffice/page'
+			}), $stateProvider.state('formaslass6', {
+				url : '/formaslass6',
+				controller : 'FormAslass6Controller',
+				templateUrl : '../formaslass6/page'
 			});
 		});
