@@ -39,7 +39,7 @@
 	<!-- Imports user-defined @Controller beans that process client requests -->
 	<beans:import resource="controllers.xml" />
 
-
+<!-- 
 	<bean id="jacksonDateMapper" class="com.po.ssais.json.mapper.SsaisDateMapper">
 		<property name="mask" value="dd-MM-yyyy" />
 	</bean>
@@ -47,7 +47,7 @@
 	<bean id="jsonConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="objectMapper" ref="jacksonDateMapper" />
-	</bean>
+	</bean> -->
 
 
 	<mvc:annotation-driven>

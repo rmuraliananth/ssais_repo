@@ -52,117 +52,37 @@
 		</div>	
 	</div>	
 	
-	<div class="well">  
-		<input type="text" class="span3" id="search" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source="["Ahmedabad","Akola","Asansol","Aurangabad","Bangaluru","Baroda","Belgaon","Berhumpur","Calicut","Chennai","Chapra","Cherapunji"]">  
+
+
+	<div class="example example-films">
+		<h2 class="example-name">Prefetch Backed by Remote</h2>
+		<p class="example-description">Prefetches some data then relies on
+			remote requests for suggestions when prefetched data is insufficient.</p>
+
+		<div class="demo">
+			<input class="typeahead" type="text"
+				placeholder="best picture winners">
+		</div>
 	</div>
-	
-	<div class="example example-numbers">
-        <h2 class="example-name">Dead Simple</h2>
-        <p class="example-description">Suggestions are fetched from the hardcoded local data. </p>
 
-        <div class="demo">
-          <input class="typeahead" type="text" placeholder="numbers (1-10)">
-        </div>
 
-        <div class="gist">
-          <script src="https://gist.github.com/jharding/8764233.js"></script>
-        </div>
-      </div>
-      
-      <div class="example example-countries">
-        <h2 class="example-name">Transform Remote Data</h2>
-        <p class="example-description">Prefetches remote data then transforms it into the proper format.</p>
-
-        <div class="demo">
-          <input class="typeahead" type="text" placeholder="countries">
-        </div>
-
-        <div class="gist">
-          <script src="https://gist.github.com/jharding/8156031.js"></script>
-        </div>
-      </div>
-      
-       <div class="example example-films">
-        <h2 class="example-name">Prefetch Backed by Remote</h2>
-        <p class="example-description">Prefetches some data then relies on remote requests for suggestions when prefetched data is insufficient.</p>
-
-        <div class="demo">
-          <input class="typeahead" type="text" placeholder="best picture winners">
-        </div>
-
-        <div class="gist">
-          <script src="https://gist.github.com/jharding/8156071.js"></script>
-        </div>
-      </div>
-
-	
 </div>
-<script>  
- var subjects = ['PHP', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON'];   
-$('#search').typeahead({source: subjects})  
-
-// instantiate the bloodhound suggestion engine
-var numbers = new Bloodhound({
-datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
-queryTokenizer: Bloodhound.tokenizers.whitespace,
-local: [
-{ num: 'one' },
-{ num: 'two' },
-{ num: 'three' },
-{ num: 'four' },
-{ num: 'five' },
-{ num: 'six' },
-{ num: 'seven' },
-{ num: 'eight' },
-{ num: 'nine' },
-{ num: 'ten' }
-]
-});
- 
-// initialize the bloodhound suggestion engine
-numbers.initialize();
- 
-// instantiate the typeahead UI
-$('.example-numbers .typeahead').typeahead(null, {
-displayKey: 'num',
-source: numbers.ttAdapter()
-});
-
-var countries = new Bloodhound({
-	datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
-	queryTokenizer: Bloodhound.tokenizers.whitespace,
-	limit: 10,
-	prefetch: {
-	url: '../customer/view',
-	filter: function(list) {
-	return $.map(list, function(customer) { return { name: customer.name }; });
-	}
-	}
-	});
-	 
-	countries.initialize();
-	 
-	$('.example-countries .typeahead').typeahead(null, {
-	name: 'countries',
-	displayKey: 'name',
-	source: countries.ttAdapter()
-	});
-	
+<script>
 	var films = new Bloodhound({
-		datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.value); },
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		remote: '../customer/view?q=2',
-		prefetch: '../customer/view'
-		});
-		 
-		films.initialize();
-		 
-		$('.example-films .typeahead').typeahead(null, {
-		displayKey: 'value',
-		source: films.ttAdapter()
-		});
-	
-</script>  
+		datumTokenizer : function(d) {
+			return Bloodhound.tokenizers.whitespace(d.value);
+		},
+		queryTokenizer : Bloodhound.tokenizers.whitespace,
+		remote : '../formaslass6/getAccounts?_search_by_account_no=4&&_search_by_account_name=m'
+	});
+
+	films.initialize();
+
+	$('.example-films .typeahead').typeahead(null, {
+		displayKey : 'accountNo',
+		source : films.ttAdapter()
+	});
+</script>
 
 
 

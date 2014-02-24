@@ -19,4 +19,8 @@ import com.po.ssais.entities.Customer;
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
 	public List<Account> findByCustomer(Customer customer);
+
+	public List<Account> findByAccountNoLikeOrNameLikeOrderByAccountNoDesc(String accountNo, String name);
+	
+	
 }
