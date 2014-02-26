@@ -8,12 +8,14 @@
 var FormAslass6Controller = function($scope, $http) {
 	$scope.postoffice = {};
 	$scope.editMode = false;
-	
-	
+	$scope.search_account_id = '';
+	$scope.account = {};
+
+	$scope.formaccount = {};
 
 	$scope.fetchPostOfficesList = function() {
 		$scope.resetError();
-		$("#postofficeList").trigger("reloadGrid");
+		// $("#postofficeList").trigger("reloadGrid");
 	};
 
 	$scope.save = function(postoffice) {
@@ -21,6 +23,10 @@ var FormAslass6Controller = function($scope, $http) {
 			console.log("valid");
 			console.log(postoffice);
 		}
+	};
+
+	$scope.selectedAccount = function(account) {
+		$scope.account = account;
 	};
 
 	$scope.addNewPostOffice = function(postoffice) {
@@ -117,7 +123,39 @@ var FormAslass6Controller = function($scope, $http) {
 		$scope.modalErrorMessage = message;
 	};
 
-	console.log("PostOffice controller loaded.....");
-	// $scope.fetchPostOfficesList();
+	console.log("FormAslass6Controller controller loaded.....");
+
+	/* Search account name or account no */
+	var searchAccounts = new Bloodhound(
+			{
+				datumTokenizer : function(d) {
+					return Bloodhound.tokenizers.whitespace(d.value);
+				},
+				queryTokenizer : Bloodhound.tokenizers.whitespace,
+				remote : '../formaslass6/searchAccounts?_search_account_no_or_name=%QUERY',
+			});
+
+	searchAccounts.initialize();
+
+	$scope._searchByAccountNoOrName = function() {
+		$('#search_account_no_or_name').typeahead(
+				null,
+				{
+					displayKey : 'accountNo',
+					source : searchAccounts.ttAdapter(),
+					templates : {
+						suggestion : Handlebars
+								.compile('<p>{{name}} ({{accountNo}})</p>')
+					}
+				});
+
+		$('#search_account_no_or_name').on('typeahead:selected',
+				function(e, account, data_set) {
+					$scope.$apply(function() {
+						$scope.account = account;
+					});
+				});
+	};
+	$scope._searchByAccountNoOrName();
 	$scope.predicate = 'id';
 };

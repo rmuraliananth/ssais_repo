@@ -27,6 +27,22 @@ public class AccountServiceImplTest extends AbstractContextTests {
 
 	}
 
+	@Test
+	public void testSearchByAccountNoLikeOrNameLikeOrderByAccNoDesc() {
+		List<Account> accounts = accountRepository.findAll();
+		for (Account account : accounts) {
+			System.out.println(account.getAccountNo());
+		}
+		List<Account> list = accountRepository
+				.searchByAccountNoLikeOrNameLikeOrderByAccNoDesc("0", "ce");
+		System.out.println("==================");
+		for (Account account : list) {
+			System.out.println(account.getAccountNo() + " | "
+					+ account.getCustomer().getName());
+
+		}
+	}
+
 	// public void testFetchCustomers() {
 	// fail("Not yet implemented");
 	// }

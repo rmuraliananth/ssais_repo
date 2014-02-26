@@ -18,6 +18,8 @@
 
 <!-- For Auto Complete -->
 <script	src="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/js/typeahead.bundle.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/js/handlebars.js"></script>
+
 
 <!-- Angular core JavaScript -->
 <script src="${pageContext.request.contextPath}/resources/js/angular-1.2.12/angular.js"></script>

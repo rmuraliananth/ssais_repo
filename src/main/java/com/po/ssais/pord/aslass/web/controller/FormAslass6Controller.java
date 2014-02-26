@@ -36,14 +36,13 @@ public class FormAslass6Controller {
 		return modelView;
 	}
 
-	@RequestMapping(value = "/getAccounts", method = RequestMethod.GET)
+	@RequestMapping(value = "/searchAccounts", method = RequestMethod.GET)
 	public @ResponseBody
-	List<AccountDTO> getAccounts(
-			@RequestParam(value = "_search_by_account_no", required = true) String _search_by_account_no,
-			@RequestParam(value = "_search_by_account_name", required = true) String _search_by_account_name) {
+	List<AccountDTO> searchAccounts(
+			@RequestParam(value = "_search_account_no_or_name", required = true) String _search_account_no_or_name) {
 		LOGGER.debug("Inside getAccounts() method");
-		List<AccountDTO> list = formAslass6Service.getAccounts(
-				_search_by_account_no, _search_by_account_name);
+		List<AccountDTO> list = formAslass6Service.searchAccounts(
+				_search_account_no_or_name, _search_account_no_or_name);
 		return list;
 	}
 

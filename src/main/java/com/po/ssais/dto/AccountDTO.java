@@ -26,6 +26,7 @@ public class AccountDTO implements Serializable {
 	private int id;
 	private String accountNo;
 	private Double principalAmount;
+	private String name;
 
 	@JsonSerialize(using = SsaisDateSerializer.class)
 	@JsonDeserialize(using = SsaisDateDeserializer.class)
@@ -108,6 +109,21 @@ public class AccountDTO implements Serializable {
 	 */
 	public void setMaturityDate(Date maturityDate) {
 		this.maturityDate = maturityDate;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

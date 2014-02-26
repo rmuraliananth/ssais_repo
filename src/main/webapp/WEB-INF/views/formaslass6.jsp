@@ -33,8 +33,46 @@
 		<div class="col-sm-12">
 			<div class="panel panel-primary">
 	            <div class="panel-body">
-	              Search
-	              <input type="text" data-provide="typeahead">
+	              <div class="row">
+						<div class="col-sm-3">
+							<p>
+								<spring:message code="formaslass6.lbl.search_account_no_or_name" />
+							</p>
+							<input class="form-control" id="search_account_no_or_name" type="text" name="search_account_no_or_name"  placeholder="Account Name Or No"/>
+							
+						</div>
+						<div class="col-sm-9">
+							<div class="row">
+								<div class="col-sm-2">
+										<spring:message code="customer.lbl.name"/>
+								</div>
+								<div class="col-sm-2">
+										<spring:message code="customer.account.lbl.account_no"/>
+								</div>
+								<div class="col-sm-2">
+										<spring:message code="customer.account.lbl.principal_amount"/>
+								</div>
+								<div class="col-sm-3">
+										<spring:message code="customer.account.lbl.open_date"/>
+								</div>
+							</div>
+							<p></p>
+							<div class="row">
+								<div class="col-sm-2">
+									{{account.name}}
+								</div>
+								<div class="col-sm-2">
+									{{account.accountNo}}
+								</div>
+								<div class="col-sm-2">
+									{{account.principalAmount}}
+								</div>
+								<div class="col-sm-3">
+									{{account.openDate}}
+								</div>
+							</div>
+						</div>
+					</div>
 	            </div>
           	</div>
           	<div class="panel panel-primary">
@@ -47,42 +85,8 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="alert alert-danger" ng-show="error">
-	        	{{errorMessage}}
+	        	{{errorMessage}}  {{formaccount}}	   
 	      	</div>
 		</div>	
-	</div>	
-	
-
-
-	<div class="example example-films">
-		<h2 class="example-name">Prefetch Backed by Remote</h2>
-		<p class="example-description">Prefetches some data then relies on
-			remote requests for suggestions when prefetched data is insufficient.</p>
-
-		<div class="demo">
-			<input class="typeahead" type="text"
-				placeholder="best picture winners">
-		</div>
 	</div>
-
-
 </div>
-<script>
-	var films = new Bloodhound({
-		datumTokenizer : function(d) {
-			return Bloodhound.tokenizers.whitespace(d.value);
-		},
-		queryTokenizer : Bloodhound.tokenizers.whitespace,
-		remote : '../formaslass6/getAccounts?_search_by_account_no=4&&_search_by_account_name=m'
-	});
-
-	films.initialize();
-
-	$('.example-films .typeahead').typeahead(null, {
-		displayKey : 'accountNo',
-		source : films.ttAdapter()
-	});
-</script>
-
-
-

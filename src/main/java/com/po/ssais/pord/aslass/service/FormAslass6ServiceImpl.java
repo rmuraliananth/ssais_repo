@@ -27,15 +27,16 @@ public class FormAslass6ServiceImpl implements FormAslass6Service {
 	private AccountRepository accountRepository;
 
 	@Override
-	public List<AccountDTO> getAccounts(String _search_by_account_no,
+	public List<AccountDTO> searchAccounts(String _search_by_account_no,
 			String _search_by_account_name) {
 		LOGGER.debug("Get accounts");
 		LOGGER.debug("Search param :: _search_by_account_no = "
 				+ _search_by_account_no);
 		LOGGER.debug("Search param :: _search_by_account_name = "
 				+ _search_by_account_name);
-		List<Account> accountList = accountRepository.findByAccountNoLikeOrNameLikeOrderByAccountNoDesc(
-				_search_by_account_no, _search_by_account_name);
+		List<Account> accountList = accountRepository
+				.searchByAccountNoLikeOrNameLikeOrderByAccNoDesc(
+						_search_by_account_no, _search_by_account_name);
 		List<AccountDTO> accountDTOList = new LinkedList<AccountDTO>();
 		for (Account account : accountList) {
 			accountDTOList.add(convertAccountToDTO(account));
@@ -48,6 +49,11 @@ public class FormAslass6ServiceImpl implements FormAslass6Service {
 		AccountDTO accountDTO = new AccountDTO();
 		accountDTO.setId(account.getId());
 		accountDTO.setAccountNo(account.getAccountNo());
+		accountDTO.setName(account.getCustomer().getName());
+		accountDTO
+				.setPrincipalAmount((account.getPrincipalAmount() == null ? null
+						: account.getPrincipalAmount().doubleValue()));
+		accountDTO.setOpenDate(account.getOpenDate());
 		return accountDTO;
 	}
 

@@ -12,6 +12,7 @@ import com.po.ssais.dto.AccountDTO;
  * 
  */
 public interface FormAslass6Service {
-	public List<AccountDTO> getAccounts(final String _search_by_account_no,
+
+	public List<AccountDTO> searchAccounts(final String _search_by_account_no,
 			final String _search_by_account_name);
 }
