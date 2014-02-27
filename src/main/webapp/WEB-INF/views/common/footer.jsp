@@ -14,6 +14,7 @@
 
 <!-- Bootstrap core JavaScript -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script	src="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/bootstrap-select.min.js"></script>
 <script	src="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/js/bootstrap.min.js"></script>
 
 <!-- For Auto Complete -->

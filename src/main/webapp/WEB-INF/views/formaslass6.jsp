@@ -68,9 +68,21 @@
 									{{account.principalAmount}}
 								</div>
 								<div class="col-sm-3">
-									{{account.openDate}}
+									{{account.openDate}} 
+									<select id="id_select"
+										class="selectpicker form-control" multiple
+										data-live-search="true">
+										<option>cow</option>
+										<option>bull</option>
+									</select>
 								</div>
 							</div>
+							
+							<select id="id_select_1" class="selectpicker form-control" 
+								data-live-search="true">
+								<option>cow</option>
+								<option>bull</option>
+							</select>
 						</div>
 					</div>
 	            </div>
@@ -90,3 +102,10 @@
 		</div>	
 	</div>
 </div>
+<script>
+	$(function() {
+		$('.selectpicker').selectpicker({
+			'selectedText' : 'cat'
+		});
+	});
+</script>

@@ -2,6 +2,10 @@
 
 <!-- Bootstrap core CSS -->
 <link
+	href="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/bootstrap-select.css"
+	rel="stylesheet">
+	
+<link
 	href="${pageContext.request.contextPath}/resources/js/bootstrap-3.1.0/css/bootstrap.min.css"
 	rel="stylesheet">
 
